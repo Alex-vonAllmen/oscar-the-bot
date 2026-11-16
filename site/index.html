@@ -310,7 +310,7 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
 <main>
 
 <header>
-  <p class="eyebrow">Build log, plan v3, started 14 November 2026</p>
+  <p class="eyebrow">Build log, plan v4, started 14 November 2026</p>
   <h1>A Wall-E replica my daughter can teach</h1>
   <p class="lede">I am building a 3D-printed, tank-tracked robot with my daughter and giving it a brain she can talk to, argue with and train herself. This page is the plan. I will update it as the build moves, including the parts that go wrong.</p>
   <dl class="status">
@@ -358,7 +358,8 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
         <h3>Raspberry Pi 5</h3>
         <ul>
           <li>Camera behind one eye, microphone, speaker</li>
-          <li>Stock web interface: joystick, gamepad, sounds, block editor</li>
+          <li>Bluetooth game controller, paired with the Pi directly</li>
+          <li>Stock web interface: joystick, sounds, block editor</li>
           <li>Face following, wake word and speech to text, on the device</li>
           <li>Teach game: pictures, classifier, answers</li>
         </ul>
@@ -412,8 +413,8 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
       <div class="body">
         <div class="head"><h3>Drive base and remote control</h3><span class="when">Jan 2027</span><span class="pill">Not started</span></div>
         <dl class="track">
-          <dt>Build</dt><dd>Assemble the treads and both geared motors. Wire the Arduino, motor shield, battery holder, fuse, low-voltage cutoff and buck converter. Fit the two distance sensors and make the Arduino stop at a wall or a drop. Flash the stock sketch and install the stock web interface on the Pi. First test over serial with <code>w</code> <code>a</code> <code>s</code> <code>d</code> to drive and <code>q</code> to stop.</dd>
-          <dt>Her part</dt><dd class="hers">First drive, with a gamepad or the on-screen joystick. Then try to drive it into a wall and off a low step, and find out that it refuses.</dd>
+          <dt>Build</dt><dd>Assemble the treads and both geared motors. Wire the Arduino, motor shield, battery holder, fuse, low-voltage cutoff and buck converter. Fit the two distance sensors and make the Arduino stop at a wall or a drop. Flash the stock sketch and install the stock web interface on the Pi. First test over serial with <code>w</code> <code>a</code> <code>s</code> <code>d</code> to drive and <code>q</code> to stop. Then pair a Bluetooth game controller with the Pi and write the small service that turns sticks and buttons into the same commands. Make the robot stop when the controller connection drops.</dd>
+          <dt>Her part</dt><dd class="hers">First drive, with the game controller in her hands. Then try to drive it into a wall and off a low step, and find out that it refuses.</dd>
           <dt>Done when</dt><dd>She drives it across the living room and back, and it stops by itself at a wall and at a low step.</dd>
         </dl>
       </div>
@@ -461,7 +462,7 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
       <div class="body">
         <div class="head"><h3>AI layer two: it listens and answers</h3><span class="when">Mar to Apr 2027</span><span class="pill">Not started</span></div>
         <dl class="track">
-          <dt>Build</dt><dd>Wake word and speech to text on the Pi, with the laptop as fallback if the Pi is too slow, then a language model that can answer and call four robot tools: <code>drive</code>, <code>look</code>, <code>play_animation</code> and <code>play_sound</code>. Text to speech on the Pi. Target: the answer starts within two seconds, because a small child will not wait longer.</dd>
+          <dt>Build</dt><dd>Wake word and speech to text on the Pi, with the laptop as fallback if the Pi is too slow, then a language model that can answer and call four robot tools: <code>drive</code>, <code>look</code>, <code>play_animation</code> and <code>play_sound</code>. Text to speech on the Pi. A button on the game controller works as push-to-talk next to the wake word. Target: the answer starts within two seconds, because a small child will not wait longer.</dd>
           <dt>Her part</dt><dd class="hers">Decide the robot's character and its rules, in her own words. We write them into its instructions together and test whether it keeps them.</dd>
           <dt>Lesson</dt><dd>You steer this kind of machine with language, and it does not always do what you meant.</dd>
           <dt>Done when</dt><dd>She asks it to come to her, and it does.</dd>
@@ -487,10 +488,10 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
 
 <section id="parts">
   <h2>Parts</h2>
-  <p>The mechanical and electrical list follows the original design, with the exact parts it links to. The brain parts, the tool battery and the distance sensors are my changes. Prices are what I found in shops on 15 November 2026. They move daily, and shipping is not included.</p>
+  <p>The mechanical and electrical list follows the original design, with the exact parts it links to. The brain parts, the tool battery, the distance sensors and the game controller are my changes. Prices are what I found in shops on 15 November 2026. They move daily, and shipping is not included.</p>
   <dl class="status budget">
-    <div><dt>With the printer</dt><dd>CHF 940 to 1,100</dd></div>
-    <div><dt>Without the printer</dt><dd>CHF 690 to 850</dd></div>
+    <div><dt>With the printer</dt><dd>CHF 975 to 1,145</dd></div>
+    <div><dt>Without the printer</dt><dd>CHF 725 to 895</dd></div>
     <div><dt>Not in the total</dt><dd>Shipping, eye lenses</dd></div>
   </dl>
   <div class="table-scroll">
@@ -512,6 +513,7 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
         <tr><td>Arduino Motor Shield Rev3</td><td class="qty">1</td><td><span class="src">Bastelgarage</span></td><td class="chf">25.90</td><td>To order</td></tr>
         <tr><td>I2C servo driver</td><td class="qty">1</td><td>PCA9685, 16 channels.<span class="src">Bastelgarage</span></td><td class="chf">11.90</td><td>To order</td></tr>
         <tr><td>Distance sensors</td><td class="qty">2</td><td>My addition. VL53L0X time-of-flight boards that run at 5 V and expose the shutdown pin. One looks forward, one looks down at the floor ahead.<span class="src">Bastelgarage and Mouser, CHF 9 to 16 each</span></td><td class="chf">18 to 32</td><td>To choose</td></tr>
+        <tr><td>Bluetooth game controller</td><td class="qty">1</td><td>My addition. 8BitDo SN30 Pro, the Bluetooth version: two sticks, small enough for small hands, pairs with the Pi directly. A cheaper listing with the same name is USB only. A PlayStation controller already in the house does the same job for nothing.<span class="src">Galaxus, Digitec</span></td><td class="chf">35 to 45</td><td>To order</td></tr>
 
         <tr><th scope="rowgroup" colspan="5">Power</th></tr>
         <tr><td>Tool battery set</td><td class="qty">1</td><td>Bosch Professional 12 V starter set: two GBA 12V 3.0 Ah packs and the GAL 12V-40 fast charger. Hard-cased, three cells, same voltage as the original LiPo.<span class="src">Galaxus. The set with two 2.0 Ah packs is CHF 68.90.</span></td><td class="chf">87.90</td><td>To order</td></tr>
@@ -566,7 +568,8 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
     </dd>
     <dt>Remote control</dt>
     <dd>
-      <span>Stock Flask web interface on the Pi: on-screen joystick, gamepad support, manual servo control, sounds, text to speech, a drag-and-drop block editor and a camera stream. A systemd service starts it at boot.</span>
+      <span>New: a Bluetooth game controller is the main control. It pairs with the Pi, and a small service turns sticks and buttons into the commands above. No phone, browser or Wi-Fi is involved. If the connection drops, the service sends stop.</span>
+      <span>Stock Flask web interface on the Pi, kept for setup and debugging: on-screen joystick, manual servo control, sounds, text to speech, a drag-and-drop block editor and a camera stream. A systemd service starts it at boot.</span>
     </dd>
     <dt>Face following</dt>
     <dd>
@@ -574,7 +577,7 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
     </dd>
     <dt>Voice loop</dt>
     <dd>
-      <span>New. Wake word, speech to text, language model with tool calls, text to speech. Candidates are openWakeWord, a Whisper-family model and Piper. Which language model runs behind it is an open decision.</span>
+      <span>New. Wake word or a push-to-talk button on the controller, speech to text, language model with tool calls, text to speech. Candidates are openWakeWord, a Whisper-family model and Piper. Which language model runs behind it is an open decision.</span>
       <span>The model never sends raw serial commands. It calls four named tools with limits on speed and duration, and the service translates those into the commands above.</span>
     </dd>
     <dt>Teach game</dt>
@@ -590,11 +593,12 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
   <p>This is a robot with a lithium battery, a camera and a microphone in a house with a small child. These rules are part of the design.</p>
   <ul class="plain">
     <li><strong>Battery.</strong> The battery is a hard-cased tool pack, charged in its own dock outside the robot. A fuse and a low-voltage cutoff sit between the pack and everything else.</li>
-    <li><strong>Walls and edges.</strong> Two distance sensors stop forward motion at an obstacle or a drop, whatever the gamepad, the Pi or the language model asked for.</li>
+    <li><strong>Walls and edges.</strong> Two distance sensors stop forward motion at an obstacle or a drop, whatever the controller, the Pi or the language model asked for.</li>
+    <li><strong>Lost connection.</strong> When the game controller disconnects or its battery dies, the robot stops. The Arduino should also stop by itself when the Pi goes silent. That second check needs a heartbeat the stock code does not have, and it is not written yet.</li>
     <li><strong>Pinch points.</strong> Treads and arm linkages can catch small fingers. Drive speed is capped in software while she is the driver.</li>
     <li><strong>Printer and paint.</strong> The nozzle and bed are hot, so she watches and I remove the parts. Spray painting is an adult job, outdoors.</li>
     <li><strong>No pictures or audio of her leave the house.</strong> Face following and the teach game run on the robot. Speech is transcribed at home, and only the text goes to the language model.</li>
-    <li><strong>The microphone has a physical off switch.</strong> Nothing is recorded before the wake word.</li>
+    <li><strong>The microphone has a physical off switch.</strong> Nothing is recorded before the wake word or the talk button.</li>
     <li><strong>Home network only.</strong> The stock web interface has a simple login that is not meant for untrusted networks, so the robot is never exposed to the internet.</li>
   </ul>
 </section>
@@ -604,10 +608,11 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
   <ul class="plain">
     <li><strong>Printer.</strong> Open-frame or enclosed. The enclosed one keeps hot and moving parts behind a door and costs about twice as much.</li>
     <li><strong>Language model.</strong> A cloud model answers faster and better. A local model on the laptop keeps even the text at home. I will measure response time for both before choosing.</li>
-    <li><strong>Sharing the serial port.</strong> The stock web interface owns the connection to the Arduino. The AI service should send its commands through that interface instead of opening the port a second time. How cleanly that works is untested.</li>
+    <li><strong>Sharing the serial port.</strong> The stock web interface owns the connection to the Arduino. The AI service and the controller service should send their commands through that interface instead of opening the port a second time. How cleanly that works is untested.</li>
     <li><strong>Camera fit.</strong> Which CSI camera module fits behind the eye lens without changing the printed eye housing.</li>
     <li><strong>Battery fit.</strong> Whether the printed holder and a Bosch pack fit in the body, which was designed around a flat LiPo.</li>
     <li><strong>Sensor bracket.</strong> Where the two distance sensors mount on the front without spoiling the look, and whether the extra code still fits in the Arduino Uno's memory.</li>
+    <li><strong>Wake word or talk button.</strong> A wake word has to cope with a child's voice. A talk button is simpler and only listens while it is held. Both are planned, and she decides which one she uses.</li>
     <li><strong>The robot's name.</strong> Not my decision.</li>
   </ul>
 </section>
@@ -615,6 +620,13 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
 <section id="log">
   <h2>Build log</h2>
   <ol class="log">
+    <li>
+      <time datetime="2026-11-16">16 Nov 2026</time>
+      <div class="entry">
+        <h3>A game controller instead of a phone</h3>
+        <p>The main control is now a Bluetooth game controller paired with the Pi, so driving needs no phone, browser or Wi-Fi. The web interface stays for setup. One controller button becomes push-to-talk. The robot has to stop when the controller connection drops. New estimate: CHF 975 to 1,145 with the printer.</p>
+      </div>
+    </li>
     <li>
       <time datetime="2026-11-15">15 Nov 2026</time>
       <div class="entry">
@@ -651,7 +663,7 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
 <footer>
   <p>This is an unofficial fan build and a personal project. WALL-E is a character owned by Disney and Pixar. This site is not affiliated with or endorsed by either company.</p>
   <p>Source of this site: <a href="https://github.com/Alex-vonAllmen/oscar-the-bot">github.com/Alex-vonAllmen/oscar-the-bot</a></p>
-  <p>Plan v3, 15 November 2026. Dates, parts and prices will change.</p>
+  <p>Plan v4, 16 November 2026. Dates, parts and prices will change.</p>
 </footer>
 
 </main>
