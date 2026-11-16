@@ -297,7 +297,7 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
   <ol>
     <li><a href="#why">Why this robot</a></li>
     <li><a href="#architecture">How it fits together</a></li>
-    <li><a href="#phases">Phases</a></li>
+    <li><a href="#missions">Missions</a></li>
     <li><a href="#parts">Parts</a></li>
     <li><a href="#software">Software</a></li>
     <li><a href="#safety">Safety and privacy</a></li>
@@ -310,13 +310,13 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
 <main>
 
 <header>
-  <p class="eyebrow">Build log, plan v4, started 14 November 2026</p>
+  <p class="eyebrow">Build log, plan v5, started 14 November 2026</p>
   <h1>A Wall-E replica my daughter can teach</h1>
   <p class="lede">I am building a 3D-printed, tank-tracked robot with my daughter and giving it a brain she can talk to, argue with and train herself. This page is the plan. I will update it as the build moves, including the parts that go wrong.</p>
   <dl class="status">
-    <div><dt>Now</dt><dd>Phase 0, planning and ordering</dd></div>
+    <div><dt>Now</dt><dd>Mission 0, planning and ordering</dd></div>
     <div><dt>Parts printed</dt><dd>0 of about 310</dd></div>
-    <div><dt>Last update</dt><dd>15 Nov 2026</dd></div>
+    <div><dt>Last update</dt><dd>16 Nov 2026</dd></div>
   </dl>
 </header>
 
@@ -326,7 +326,7 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
   <p>The body is <a href="https://wired.chillibasket.com/3d-printed-wall-e/">chillibasket's open-source Wall-E replica</a>: about 310 printed parts, two drive motors, seven servos, an Arduino and a Raspberry Pi. The stock build is remote controlled. This project adds three AI layers on top.</p>
   <ol class="rules">
     <li><span><strong>It has to survive a child.</strong> Tracks cannot fall over. A walking robot falls, and servos break when it does.</span></li>
-    <li><span><strong>She has a job in every phase.</strong> Each phase below lists my part and hers. If a phase has nothing for her to do, the phase is wrong.</span></li>
+    <li><span><strong>Every session ends with something that works.</strong> Each mission below lists my part, hers and the one idea she should take away. If a mission has nothing for her to do, the mission is wrong.</span></li>
     <li><span><strong>She has to be able to teach it.</strong> The main lesson is a game: she shows the robot her toys, names them, and watches it get better or worse depending on the examples she gives.</span></li>
   </ol>
   <div class="aside">
@@ -379,9 +379,14 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
   <p class="power">Power: one 12 V tool battery feeds the motors directly and the Pi through a 12 V to 5 V buck converter.</p>
 </section>
 
-<section id="phases">
-  <h2>Phases</h2>
-  <p>Dates are targets at a weekend pace. Each phase ends with something she can do with the robot that she could not do before.</p>
+<section id="missions">
+  <h2>Missions</h2>
+  <p>Each mission is one or two weekends and ends with something that works. The printer runs between our sessions, so a session never consists of waiting. The eyes and head come first: they carry the character, they are small prints, and they need no battery. The body panels come last. Dates are targets at a weekend pace.</p>
+  <div class="aside">
+    <h3>Why not print everything first</h3>
+    <p>The first version of this plan followed the engineering order: print about 310 parts, paint them, then assemble and test unit by unit. The original builder needed more than a month of near-daily printing. That is a month in which nothing moves, and a small child will not wait for it.</p>
+    <p>The new order costs me rework. Head, eyes and electronics are wired on the desk first and wired again inside the body. I accept that.</p>
+  </div>
   <ol class="phases">
 
     <li class="phase">
@@ -389,9 +394,9 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
       <div class="body">
         <div class="head"><h3>Plan and order</h3><span class="when">Nov 2026</span><span class="pill now">In progress</span></div>
         <dl class="track">
-          <dt>Build</dt><dd>Pick the printer, download the CAD files and code, order the electronics with the longest delivery times first.</dd>
+          <dt>Build</dt><dd>Pick the printer, download the CAD files and code, and order in two waves. First the printer, filament, Raspberry Pi, camera, servos, Arduino, servo driver, game controller, speaker and microphone, because missions 1 to 8 need only those. Motors, motor shield, distance sensors and battery follow later.</dd>
           <dt>Her part</dt><dd class="hers">Name the robot.</dd>
-          <dt>Done when</dt><dd>The printer is running and every part in the list below is ordered.</dd>
+          <dt>Done when</dt><dd>The printer is running and the first wave has arrived.</dd>
         </dl>
       </div>
     </li>
@@ -399,11 +404,13 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
     <li class="phase">
       <div class="num">1</div>
       <div class="body">
-        <div class="head"><h3>Print and paint</h3><span class="when">Nov to Dec 2026</span><span class="pill">Not started</span></div>
+        <div class="head"><h3>The printer's first print</h3><span class="when">Late Nov 2026</span><span class="pill">Not started</span></div>
         <dl class="track">
-          <dt>Build</dt><dd>About 310 parts, of which roughly 210 are small tread links. The original builder needed more than a month of near-daily printing, with the largest body parts taking up to 14 hours each. Tread links and drive parts in PETG for wear, body in PLA. Prime and spray paint outdoors.</dd>
-          <dt>Her part</dt><dd class="hers">Sort finished parts into labelled boxes. Weather the painted body with brown and black acrylic paint, which is the one paint job where mess improves the result.</dd>
-          <dt>Done when</dt><dd>All parts are printed, painted and sorted.</dd>
+          <dt>Build</dt><dd>Set up the printer. Nothing of the robot yet.</dd>
+          <dt>Printing</dt><dd>A name plate for the robot. A short print, so she can watch it from start to finish.</dd>
+          <dt>Her part</dt><dd class="hers">Picks the colour, presses start, watches the first layer go down, and peels the part off the plate once it is cool.</dd>
+          <dt>Idea</dt><dd>A printer draws a thing in thin layers.</dd>
+          <dt>Done when</dt><dd>She holds something she made appear.</dd>
         </dl>
       </div>
     </li>
@@ -411,11 +418,13 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
     <li class="phase">
       <div class="num">2</div>
       <div class="body">
-        <div class="head"><h3>Drive base and remote control</h3><span class="when">Jan 2027</span><span class="pill">Not started</span></div>
+        <div class="head"><h3>An arm that waves</h3><span class="when">Late Nov 2026</span><span class="pill">Not started</span></div>
         <dl class="track">
-          <dt>Build</dt><dd>Assemble the treads and both geared motors. Wire the Arduino, motor shield, battery holder, fuse, low-voltage cutoff and buck converter. Fit the two distance sensors and make the Arduino stop at a wall or a drop. Flash the stock sketch and install the stock web interface on the Pi. First test over serial with <code>w</code> <code>a</code> <code>s</code> <code>d</code> to drive and <code>q</code> to stop. Then pair a Bluetooth game controller with the Pi and write the small service that turns sticks and buttons into the same commands. Make the robot stop when the controller connection drops.</dd>
-          <dt>Her part</dt><dd class="hers">First drive, with the game controller in her hands. Then try to drive it into a wall and off a low step, and find out that it refuses.</dd>
-          <dt>Done when</dt><dd>She drives it across the living room and back, and it stops by itself at a wall and at a low step.</dd>
+          <dt>Build</dt><dd>One servo, the Arduino and a turning knob on the desk, with no robot around them yet. Install the stock web interface on the Pi so that its block editor is ready.</dd>
+          <dt>Printing</dt><dd>One arm with its hand, and a small block that holds the arm servo on the desk.</dd>
+          <dt>Her part</dt><dd class="hers">Turns the knob and the arm follows. Then makes the arm wave by itself with three blocks in the drag-and-drop editor.</dd>
+          <dt>Idea</dt><dd>Motors do what signals tell them.</dd>
+          <dt>Done when</dt><dd>The arm waves at her without anyone touching it.</dd>
         </dl>
       </div>
     </li>
@@ -423,11 +432,13 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
     <li class="phase">
       <div class="num">3</div>
       <div class="body">
-        <div class="head"><h3>Head, neck and arms</h3><span class="when">Jan to Feb 2027</span><span class="pill">Not started</span></div>
+        <div class="head"><h3>The robot's eye</h3><span class="when">Dec 2026</span><span class="pill">Not started</span></div>
         <dl class="track">
-          <dt>Build</dt><dd>Fit the seven servos and the I2C servo driver. Run the calibration sketch to record the low and high position of each servo, then paste the calibration array into the main sketch. Known risk: in the first version of the original build the neck servos were too weak for the head, so I will check torque before closing the body.</dd>
-          <dt>Her part</dt><dd class="hers">Invent two animations and name them. Build her first programs in the drag-and-drop block editor that ships with the web interface.</dd>
-          <dt>Done when</dt><dd>The robot plays an animation she designed.</dd>
+          <dt>Build</dt><dd>Fit the camera into one eye and connect it to the Pi. The stock video stream supports Raspberry Pi CSI cameras only. I expect a curved glass lens in front of the camera to blur everything beyond arm's length, so the camera eye gets a flat clear window. That is reasoning, not yet tested.</dd>
+          <dt>Printing</dt><dd>One eye: front, middle, back and camera mount.</dd>
+          <dt>Her part</dt><dd class="hers">Paints rust and dirt on the eye with acrylics. Looks at herself through it on the screen and zooms in until the picture turns into squares.</dd>
+          <dt>Idea</dt><dd>A camera is an eye, and its picture is made of small squares.</dd>
+          <dt>Done when</dt><dd>She sees her own face through the robot's eye.</dd>
         </dl>
       </div>
     </li>
@@ -435,11 +446,13 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
     <li class="phase">
       <div class="num">4</div>
       <div class="body">
-        <div class="head"><h3>Eyes, ears and a voice</h3><span class="when">Feb 2027</span><span class="pill">Not started</span></div>
+        <div class="head"><h3>The eye finds you</h3><span class="when">Dec 2026</span><span class="pill">Not started</span></div>
         <dl class="track">
-          <dt>Build</dt><dd>Mount a camera behind one eye lens. The stock video stream supports Raspberry Pi CSI cameras only, so no USB webcam. Add a microphone, a speaker and a hardware switch that cuts the microphone.</dd>
-          <dt>Her part</dt><dd class="hers">Record the robot's sounds. The web interface plays any <code>.wav</code> file dropped into its sounds folder.</dd>
-          <dt>Done when</dt><dd>The camera streams to my phone and the robot plays a sound she recorded.</dd>
+          <dt>Build</dt><dd>Face detection on the Pi draws a box around a face in the camera picture. Everything runs on the Pi and no image leaves it. This is AI layer one, on the desk.</dd>
+          <dt>Printing</dt><dd>The second eye and the head centre.</dd>
+          <dt>Her part</dt><dd class="hers">Hide and seek with the eye on a stand: a hat, hands over her face, sideways, a dark room. She keeps a tally of when it loses her.</dd>
+          <dt>Idea</dt><dd>Machine vision fails in specific, repeatable ways, and you can find them by experiment.</dd>
+          <dt>Done when</dt><dd>The box follows her face, and she can show two ways to make it lose her.</dd>
         </dl>
       </div>
     </li>
@@ -447,12 +460,13 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
     <li class="phase">
       <div class="num">5</div>
       <div class="body">
-        <div class="head"><h3>AI layer one: it looks at you</h3><span class="when">Mar 2027</span><span class="pill">Not started</span></div>
+        <div class="head"><h3>A head with feelings</h3><span class="when">Dec 2026</span><span class="pill">Not started</span></div>
         <dl class="track">
-          <dt>Build</dt><dd>Face detection on the Pi steers the head rotation and eye servos to keep a face centred. Everything runs on the robot and no image leaves it.</dd>
-          <dt>Her part</dt><dd class="hers">Hide and seek. Find out where it loses her: backlight, hats, distance, turning away.</dd>
-          <dt>Lesson</dt><dd>Machine vision fails in specific, repeatable ways, and you can find them by experiment.</dd>
-          <dt>Done when</dt><dd>The head follows her across the room.</dd>
+          <dt>Build</dt><dd>Assemble head and neck on a desk stand with five servos and the I2C servo driver. Run the calibration sketch to record the low and high position of each servo. Known risk: in the first version of the original build the neck servos were too weak for the head, so this is where I check torque. Face detection now steers head and eyes. Pair the game controller with the Pi.</dd>
+          <dt>Printing</dt><dd>Neck parts and a desk stand for the head, over several nights.</dd>
+          <dt>Her part</dt><dd class="hers">Invents three faces, such as sad, curious and happy, names them, and plays them from the controller.</dd>
+          <dt>Idea</dt><dd>Feelings on a robot are movements somebody designed.</dd>
+          <dt>Done when</dt><dd>The head looks sad when she presses a button, and follows her across the room.</dd>
         </dl>
       </div>
     </li>
@@ -460,12 +474,13 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
     <li class="phase">
       <div class="num">6</div>
       <div class="body">
-        <div class="head"><h3>AI layer two: it listens and answers</h3><span class="when">Mar to Apr 2027</span><span class="pill">Not started</span></div>
+        <div class="head"><h3>The robot's voice</h3><span class="when">Jan 2027</span><span class="pill">Not started</span></div>
         <dl class="track">
-          <dt>Build</dt><dd>Wake word and speech to text on the Pi, with the laptop as fallback if the Pi is too slow, then a language model that can answer and call four robot tools: <code>drive</code>, <code>look</code>, <code>play_animation</code> and <code>play_sound</code>. Text to speech on the Pi. A button on the game controller works as push-to-talk next to the wake word. Target: the answer starts within two seconds, because a small child will not wait longer.</dd>
-          <dt>Her part</dt><dd class="hers">Decide the robot's character and its rules, in her own words. We write them into its instructions together and test whether it keeps them.</dd>
-          <dt>Lesson</dt><dd>You steer this kind of machine with language, and it does not always do what you meant.</dd>
-          <dt>Done when</dt><dd>She asks it to come to her, and it does.</dd>
+          <dt>Build</dt><dd>Speaker, amplifier and microphone on the Pi, with a hardware switch that cuts the microphone. One controller button per sound. The web interface plays any <code>.wav</code> file dropped into its sounds folder.</dd>
+          <dt>Printing</dt><dd>Wheels and wheel frames start in the background. Many small prints.</dd>
+          <dt>Her part</dt><dd class="hers">Records the robot's sounds.</dd>
+          <dt>Idea</dt><dd>Sound can be caught, kept and played back.</dd>
+          <dt>Done when</dt><dd>It answers a button with a sound she recorded.</dd>
         </dl>
       </div>
     </li>
@@ -473,22 +488,108 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
     <li class="phase">
       <div class="num">7</div>
       <div class="body">
-        <div class="head"><h3>AI layer three: she teaches it</h3><span class="when">Apr to May 2027</span><span class="pill">Not started</span></div>
+        <div class="head"><h3>Teach it your toys</h3><span class="when">Jan 2027</span><span class="pill">Not started</span></div>
         <dl class="track">
-          <dt>Build</dt><dd>Teach mode. She holds up an object and says its name, and the robot takes about twenty pictures. A small pretrained vision model turns each picture into a list of numbers, and a nearest-neighbour classifier compares new pictures against her examples. Retraining takes seconds. The robot says what it thinks it sees and how sure it is.</dd>
-          <dt>Her part</dt><dd class="hers">Teach it her toys. Then try to fool it. Then fix it with better examples.</dd>
-          <dt>Lesson</dt><dd>It learns from examples, varied examples work better, and it can be sure and wrong at once.</dd>
+          <dt>Build</dt><dd>Teach mode, AI layer three, on the desk. She holds up an object and says its name, and the Pi takes about twenty pictures. A small pretrained vision model turns each picture into a list of numbers, and a nearest-neighbour classifier compares new pictures against her examples. Retraining takes seconds. The robot says what it thinks it sees and how sure it is.</dd>
+          <dt>Printing</dt><dd>More wheel and frame parts.</dd>
+          <dt>Her part</dt><dd class="hers">Teaches it her toys. Then tries to fool it. Then fixes it with better examples.</dd>
+          <dt>Idea</dt><dd>It learns from examples, varied examples work better, and it can be sure and wrong at once.</dd>
           <dt>Done when</dt><dd>It names five of her toys correctly and she has fooled it at least once.</dd>
         </dl>
       </div>
     </li>
 
+    <li class="phase">
+      <div class="num">8</div>
+      <div class="body">
+        <div class="head"><h3>Which track is quieter?</h3><span class="when">Jan to Feb 2027</span><span class="pill">Not started</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>Join ten links of each kind into a strip and put about two kilograms on top.</dd>
+          <dt>Printing</dt><dd>Ten track links in soft TPU and ten in hard PETG.</dd>
+          <dt>Her part</dt><dd class="hers">Pulls both strips across our wooden floor, listens, looks for marks, and decides.</dd>
+          <dt>Idea</dt><dd>You find out by testing, not by guessing.</dd>
+          <dt>Done when</dt><dd>She has picked the track material.</dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="phase">
+      <div class="num">9</div>
+      <div class="body">
+        <div class="head"><h3>One track turns</h3><span class="when">Feb 2027</span><span class="pill">Not started</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>Assemble one wheel frame with its motor, gears and track. Wire the Arduino and motor shield and flash the stock sketch. First test over serial with <code>w</code> <code>a</code> <code>s</code> <code>d</code> to drive and <code>q</code> to stop, then from the controller.</dd>
+          <dt>Printing</dt><dd>All track links and the drive gears.</dd>
+          <dt>Her part</dt><dd class="hers">Counts links into rows of ten, helps close the track, and spins it with the controller.</dd>
+          <dt>Idea</dt><dd>Gears trade speed for strength.</dd>
+          <dt>Done when</dt><dd>A track runs on the table when she pushes the stick.</dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="phase">
+      <div class="num">10</div>
+      <div class="body">
+        <div class="head"><h3>First drive</h3><span class="when">Feb to Mar 2027</span><span class="pill">Not started</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>Both tracks on the body floor. Battery, fuse, low-voltage cutoff and buck converter. Fit the two distance sensors and make the Arduino stop at a wall or a drop. Make the robot stop when the controller connection drops.</dd>
+          <dt>Printing</dt><dd>The body floor and the second wheel frame.</dd>
+          <dt>Her part</dt><dd class="hers">Drives the bare chassis. Then tries to drive it into a wall and off a low step, and finds out that it refuses.</dd>
+          <dt>Idea</dt><dd>It senses the wall before it touches it.</dd>
+          <dt>Done when</dt><dd>She drives it across the living room and back, and it stops by itself at a wall and at a low step.</dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="phase">
+      <div class="num">11</div>
+      <div class="body">
+        <div class="head"><h3>Arms and a body</h3><span class="when">Mar 2027</span><span class="pill">Not started</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>Prime and spray each body panel outdoors as it comes off the printer. Fit both arms. Move the electronics from the desk into the body.</dd>
+          <dt>Printing</dt><dd>The second arm, then one body panel per night.</dd>
+          <dt>Her part</dt><dd class="hers">Weathers each panel with brown and black acrylic paint, which is the one paint job where mess improves the result. Programs a wave and a hug in the block editor.</dd>
+          <dt>Idea</dt><dd>Big things are built from small finished things.</dd>
+          <dt>Done when</dt><dd>The panels she painted stand as a box on the tracks.</dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="phase">
+      <div class="num">12</div>
+      <div class="body">
+        <div class="head"><h3>The robot in one piece</h3><span class="when">Mar to Apr 2027</span><span class="pill">Not started</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>Move the head from the desk stand to the body, wire everything a second time, close the body and fit the door.</dd>
+          <dt>Printing</dt><dd>Body top, door and the last small parts.</dd>
+          <dt>Her part</dt><dd class="hers">Puts the head on with me. Sticks on the name plate from mission 1. Drives the robot to someone and makes it wave.</dd>
+          <dt>Idea</dt><dd>The parts she already knows now work together.</dd>
+          <dt>Done when</dt><dd>She drives the whole robot across the room and makes it wave.</dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="phase">
+      <div class="num">13</div>
+      <div class="body">
+        <div class="head"><h3>It listens and answers</h3><span class="when">Apr 2027</span><span class="pill">Not started</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>AI layer two. Wake word and speech to text on the Pi, with the laptop as fallback if the Pi is too slow, then a language model that can answer and call four robot tools: <code>drive</code>, <code>look</code>, <code>play_animation</code> and <code>play_sound</code>. Text to speech on the Pi. A button on the game controller works as push-to-talk next to the wake word. Target: the answer starts within two seconds, because a small child will not wait longer.</dd>
+          <dt>Printing</dt><dd>Nothing.</dd>
+          <dt>Her part</dt><dd class="hers">Holds the talk button and asks it to come. Decides the robot's character and its rules, in her own words. We write them into its instructions together and test whether it keeps them.</dd>
+          <dt>Idea</dt><dd>You steer this kind of machine with language, and it does not always do what you meant.</dd>
+          <dt>Done when</dt><dd>She asks it to come to her, and it does.</dd>
+        </dl>
+      </div>
+    </li>
+
   </ol>
+  <p>After mission 13 the teach game from mission 7 runs again on the finished robot, as a show for the family.</p>
 </section>
 
 <section id="parts">
   <h2>Parts</h2>
-  <p>The mechanical and electrical list follows the original design, with the exact parts it links to. The brain parts, the tool battery, the distance sensors and the game controller are my changes. Prices are what I found in shops on 15 November 2026. They move daily, and shipping is not included.</p>
+  <p>The mechanical and electrical list follows the original design, with the exact parts it links to. The brain parts, the tool battery, the distance sensors and the game controller are my changes. Prices are what I found in shops on 15 November 2026. They move daily, and shipping is not included. I order in two waves: missions 1 to 8 need only the printer, filament, Pi, camera, servos, Arduino, servo driver, controller and audio parts.</p>
   <dl class="status budget">
     <div><dt>With the printer</dt><dd>CHF 975 to 1,145</dd></div>
     <div><dt>Without the printer</dt><dd>CHF 725 to 895</dd></div>
@@ -612,6 +713,8 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
     <li><strong>Camera fit.</strong> Which CSI camera module fits behind the eye lens without changing the printed eye housing.</li>
     <li><strong>Battery fit.</strong> Whether the printed holder and a Bosch pack fit in the body, which was designed around a flat LiPo.</li>
     <li><strong>Sensor bracket.</strong> Where the two distance sensors mount on the front without spoiling the look, and whether the extra code still fits in the Arduino Uno's memory.</li>
+    <li><strong>Pace.</strong> One session a week is a guess. I will adjust after mission 3.</li>
+    <li><strong>Battery.</strong> The tool battery in the parts list is under review. The new order gives me time: nothing needs a battery before the first drive.</li>
     <li><strong>Wake word or talk button.</strong> A wake word has to cope with a child's voice. A talk button is simpler and only listens while it is held. Both are planned, and she decides which one she uses.</li>
     <li><strong>The robot's name.</strong> Not my decision.</li>
   </ul>
@@ -620,6 +723,13 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
 <section id="log">
   <h2>Build log</h2>
   <ol class="log">
+    <li>
+      <time datetime="2026-11-16">16 Nov 2026</time>
+      <div class="entry">
+        <h3>The plan turned around: head first, body last</h3>
+        <p>My first plan printed and painted every part before anything moved. That is a month of printing with nothing for her to do. The plan is now thirteen short missions. Each one ends with something that works: an arm that waves, an eye that finds her face, a head that looks sad. Camera, voice and the teach game run on the desk long before the robot drives. The price is that I wire the head twice.</p>
+      </div>
+    </li>
     <li>
       <time datetime="2026-11-16">16 Nov 2026</time>
       <div class="entry">
@@ -663,7 +773,7 @@ footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88
 <footer>
   <p>This is an unofficial fan build and a personal project. WALL-E is a character owned by Disney and Pixar. This site is not affiliated with or endorsed by either company.</p>
   <p>Source of this site: <a href="https://github.com/Alex-vonAllmen/oscar-the-bot">github.com/Alex-vonAllmen/oscar-the-bot</a></p>
-  <p>Plan v4, 16 November 2026. Dates, parts and prices will change.</p>
+  <p>Plan v5, 16 November 2026. Dates, parts and prices will change.</p>
 </footer>
 
 </main>
