@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The plan | Oscar the Bot</title>
+<meta name="description" content="Plan v5 for Oscar: thirteen short missions, architecture, software, safety rules and open decisions.">
+<link rel="preload" href="assets/fonts/geist-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="site-head">
+  <div class="inner">
+    <a class="site-name" href="index.html"><span class="plate">OSCAR</span> the Bot</a>
+    <nav class="site-nav" aria-label="Site">
+      <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="plan.html" aria-current="page">Plan</a></li>
+      <li><a href="parts.html">Parts</a></li>
+      <li><a href="design.html">Design changes</a></li>
+      <li><a href="downloads.html">Downloads</a></li>
+      <li><a href="log.html">Build log</a></li>
+      <li><a href="credits.html">Credits</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="shell">
+
+<nav class="index" aria-label="On this page">
+  <p class="name">On this page</p>
+  <ol>
+    <li><a href="#why">Why this robot</a></li>
+    <li><a href="#architecture">How it fits together</a></li>
+    <li><a href="#missions">Missions</a></li>
+    <li><a href="#software">Software</a></li>
+    <li><a href="#safety">Safety and privacy</a></li>
+    <li><a href="#open">Open decisions</a></li>
+    <li><a href="#later">Later upgrades</a></li>
+  </ol>
+</nav>
+
+<main id="content">
+<header>
+  <p class="eyebrow">Plan v5, adopted 16 November 2026, updated 24 November 2026</p>
+  <h1>The plan</h1>
+  <p class="lede">How Oscar is built, in what order, and what my daughter does in each mission. Dates are targets at a weekend pace.</p>
+</header>
+
+<section id="why">
+  <h2>Why this robot</h2>
+  <p>I want my daughter to grow up treating AI as something you can open, teach and correct. A chat window does not do that for a small child. A robot that follows her around the room and gets things wrong in front of her does.</p>
+  <p>The body is <a href="https://wired.chillibasket.com/3d-printed-wall-e/">chillibasket's open-source Wall-E replica</a>: about 310 printed parts, two drive motors, seven servos, an Arduino and a Raspberry Pi. The stock build is remote controlled. This project adds three AI layers on top.</p>
+  <ol class="rules">
+    <li><span><strong>It has to survive a child.</strong> Tracks cannot fall over. A walking robot falls, and servos break when it does.</span></li>
+    <li><span><strong>Every session ends with something that works.</strong> Each mission below lists my part, hers and the one idea she should take away. If a mission has nothing for her to do, the mission is wrong.</span></li>
+    <li><span><strong>She has to be able to teach it.</strong> The main lesson is a game: she shows the robot her toys, names them, and watches it get better or worse depending on the examples she gives.</span></li>
+  </ol>
+  <div class="aside">
+    <h3>Why there is no reinforcement learning on this robot</h3>
+    <p>My first idea was to copy what <a href="https://pollen-robotics.com/microduck/">Pollen Robotics' Microduck</a> does: train a policy in a physics simulator, then run it on the real robot. That method earns its keep on walking and balance. A tracked robot is stable by construction, so a learned drive policy would have nothing hard to learn.</p>
+    <p>It stays in the plan as a side quest. Microduck's simulator and training code are open source, so we can watch a simulated duck fall over many times and learn to walk on my laptop.</p>
+  </div>
+</section>
+
+<section id="architecture">
+  <h2>How it fits together</h2>
+  <p>Three computers, each doing what it is good at. The Arduino keeps the motion smooth, the Pi handles senses and anything that must stay private, and a bigger machine does the heavy thinking.</p>
+  <div class="arch-scroll">
+    <div class="arch">
+      <div class="node">
+        <span class="where">In the body</span>
+        <h3>Arduino Uno</h3>
+        <ul>
+          <li>Two 12 V drive motors through a motor shield</li>
+          <li>Seven servos through an I2C servo driver: head rotation, neck top, neck bottom, two eyes, two arms</li>
+          <li>Animation queue and smooth servo acceleration</li>
+          <li>Two distance sensors that stop it at walls and edges</li>
+          <li>Battery level monitor</li>
+        </ul>
+      </div>
+      <div class="wire"><span class="arrow">&#8644;</span>USB serial<br>115200 baud</div>
+      <div class="node">
+        <span class="where">In the body</span>
+        <h3>Raspberry Pi 5</h3>
+        <ul>
+          <li>Camera behind a flat window in one eye, microphone, speaker</li>
+          <li>Bluetooth game controller, paired with the Pi directly</li>
+          <li>Stock web interface: joystick, sounds, block editor</li>
+          <li>Face following, wake word and speech to text, on the device</li>
+          <li>Teach game: pictures, classifier, answers</li>
+        </ul>
+      </div>
+      <div class="wire"><span class="arrow">&#8644;</span>Home Wi-Fi<br>text only</div>
+      <div class="node">
+        <span class="where">Off the robot</span>
+        <h3>Laptop or cloud</h3>
+        <ul>
+          <li>Speech to text, only if the Pi proves too slow</li>
+          <li>Language model that answers and calls robot tools</li>
+          <li>Reinforcement learning side quest in simulation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <p class="power">Power: one 12 V battery feeds the motors directly and the Pi through a 12 V to 5 V converter. Which battery is still open. The current direction is a Bosch 12 V tool pack behind a rear flap, see <a href="#open">open decisions</a>.</p>
+</section>
+
+<section id="missions">
+  <h2>Missions</h2>
+  <p>Each mission is one or two weekends and ends with something that works. The printer runs between our sessions, so a session never consists of waiting. The eyes and head come first: they carry the character, they are small prints, and they need no battery. The body panels come last. Dates are targets at a weekend pace.</p>
+  <div class="aside">
+    <h3>Why not print everything first</h3>
+    <p>The first version of this plan followed the engineering order: print about 310 parts, paint them, then assemble and test unit by unit. The original builder needed more than a month of near-daily printing. That is a month in which nothing moves, and a small child will not wait for it.</p>
+    <p>The new order costs me rework. Head, eyes and electronics are wired on the desk first and wired again inside the body. I accept that.</p>
+  </div>
+  <ol class="phases">
+
+    <li class="phase">
+      <div class="num">0</div>
+      <div class="body">
+        <div class="head"><h3>Plan and order</h3><span class="when">Nov 2026</span><span class="pill now">In progress</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>Pick the printer, download the CAD files and code, and order in two waves. The printer, a Bambu Lab P2S Combo, and the first parts were ordered on 23 November. The first wave is the printer, filament, Raspberry Pi, camera, servos, Arduino, servo driver, game controller, speaker and microphone, because missions 1 to 8 need only those. Motors, motor shield, distance sensors and battery follow later.</dd>
+          <dt>Her part</dt><dd class="hers">Name the robot. She called him Oscar.</dd>
+          <dt>Done when</dt><dd>The printer is running and the first wave has arrived.</dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="phase">
+      <div class="num">1</div>
+      <div class="body">
+        <div class="head"><h3>The printer's first print</h3><span class="when">Late Nov 2026</span><span class="pill">Not started</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>Set up the printer. Nothing of the robot yet.</dd>
+          <dt>Printing</dt><dd>A name plate that says OSCAR. A short print, so she can watch it from start to finish.</dd>
+          <dt>Her part</dt><dd class="hers">Picks the colour, presses start, watches the first layer go down, and peels the part off the plate once it is cool.</dd>
+          <dt>Idea</dt><dd>A printer draws a thing in thin layers.</dd>
+          <dt>Done when</dt><dd>She holds something she made appear.</dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="phase">
+      <div class="num">2</div>
+      <div class="body">
+        <div class="head"><h3>An arm that waves</h3><span class="when">Late Nov 2026</span><span class="pill">Not started</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>One servo, the Arduino and a turning knob on the desk, with no robot around them yet. Install the stock web interface on the Pi so that its block editor is ready.</dd>
+          <dt>Printing</dt><dd>One arm with its hand, and a small block that holds the arm servo on the desk.</dd>
+          <dt>Her part</dt><dd class="hers">Turns the knob and the arm follows. Then makes the arm wave by itself with three blocks in the drag-and-drop editor.</dd>
+          <dt>Idea</dt><dd>Motors do what signals tell them.</dd>
+          <dt>Done when</dt><dd>The arm waves at her without anyone touching it.</dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="phase">
+      <div class="num">3</div>
+      <div class="body">
+        <div class="head"><h3>Oscar's eye</h3><span class="when">Dec 2026</span><span class="pill">Not started</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>Fit the camera into one eye and connect it to the Pi. The stock video stream supports Raspberry Pi CSI cameras only. I expect a curved glass lens in front of the camera to blur everything beyond arm's length, so the camera eye gets a flat clear window. That is reasoning, not yet tested.</dd>
+          <dt>Printing</dt><dd>One eye: front, middle, back and camera mount.</dd>
+          <dt>Her part</dt><dd class="hers">Paints rust and dirt on the eye with acrylics. Looks at herself through it on the screen and zooms in until the picture turns into squares.</dd>
+          <dt>Idea</dt><dd>A camera is an eye, and its picture is made of small squares.</dd>
+          <dt>Done when</dt><dd>She sees her own face through Oscar's eye.</dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="phase">
+      <div class="num">4</div>
+      <div class="body">
+        <div class="head"><h3>The eye finds you</h3><span class="when">Dec 2026</span><span class="pill">Not started</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>Face detection on the Pi draws a box around a face in the camera picture. Everything runs on the Pi and no image leaves it. This is AI layer one, on the desk.</dd>
+          <dt>Printing</dt><dd>The second eye and the head centre.</dd>
+          <dt>Her part</dt><dd class="hers">Hide and seek with the eye on a stand: a hat, hands over her face, sideways, a dark room. She keeps a tally of when it loses her.</dd>
+          <dt>Idea</dt><dd>Machine vision fails in specific, repeatable ways, and you can find them by experiment.</dd>
+          <dt>Done when</dt><dd>The box follows her face, and she can show two ways to make it lose her.</dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="phase">
+      <div class="num">5</div>
+      <div class="body">
+        <div class="head"><h3>A head with feelings</h3><span class="when">Dec 2026</span><span class="pill">Not started</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>Assemble head and neck on a desk stand with five servos and the I2C servo driver. Run the calibration sketch to record the low and high position of each servo. Known risk: in the first version of the original build the neck servos were too weak for the head, so this is where I check torque. Face detection now steers head and eyes. Pair the game controller with the Pi.</dd>
+          <dt>Printing</dt><dd>Neck parts and a desk stand for the head, over several nights.</dd>
+          <dt>Her part</dt><dd class="hers">Invents three faces, such as sad, curious and happy, names them, and plays them from the controller.</dd>
+          <dt>Idea</dt><dd>Feelings on a robot are movements somebody designed.</dd>
+          <dt>Done when</dt><dd>The head looks sad when she presses a button, and follows her across the room.</dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="phase">
+      <div class="num">6</div>
+      <div class="body">
+        <div class="head"><h3>Oscar's voice</h3><span class="when">Jan 2027</span><span class="pill">Not started</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>Speaker, amplifier and microphone on the Pi, with a hardware switch that cuts the microphone. One controller button per sound. The web interface plays any <code>.wav</code> file dropped into its sounds folder.</dd>
+          <dt>Printing</dt><dd>Wheels and wheel frames start in the background. Many small prints.</dd>
+          <dt>Her part</dt><dd class="hers">Records Oscar's sounds.</dd>
+          <dt>Idea</dt><dd>Sound can be caught, kept and played back.</dd>
+          <dt>Done when</dt><dd>It answers a button with a sound she recorded.</dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="phase">
+      <div class="num">7</div>
+      <div class="body">
+        <div class="head"><h3>Teach Oscar your toys</h3><span class="when">Jan 2027</span><span class="pill">Not started</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>Teach mode, AI layer three, on the desk. She holds up an object and says its name, and the Pi takes about twenty pictures. A small pretrained vision model turns each picture into a list of numbers, and a nearest-neighbour classifier compares new pictures against her examples. Retraining takes seconds. The robot says what it thinks it sees and how sure it is.</dd>
+          <dt>Printing</dt><dd>More wheel and frame parts.</dd>
+          <dt>Her part</dt><dd class="hers">Teaches it her toys. Then tries to fool it. Then fixes it with better examples.</dd>
+          <dt>Idea</dt><dd>It learns from examples, varied examples work better, and it can be sure and wrong at once.</dd>
+          <dt>Done when</dt><dd>It names five of her toys correctly and she has fooled it at least once.</dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="phase">
+      <div class="num">8</div>
+      <div class="body">
+        <div class="head"><h3>Which track is quieter?</h3><span class="when">Jan to Feb 2027</span><span class="pill">Not started</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>Join ten links of each kind into a strip and put about two kilograms on top.</dd>
+          <dt>Printing</dt><dd>Ten track links in soft TPU and ten in hard PETG.</dd>
+          <dt>Her part</dt><dd class="hers">Pulls both strips across our wooden floor, listens, looks for marks, and decides.</dd>
+          <dt>Idea</dt><dd>You find out by testing, not by guessing.</dd>
+          <dt>Done when</dt><dd>She has picked the track material.</dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="phase">
+      <div class="num">9</div>
+      <div class="body">
+        <div class="head"><h3>One track turns</h3><span class="when">Feb 2027</span><span class="pill">Not started</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>Assemble one wheel frame with its motor, gears and track. Wire the Arduino and motor shield and flash the stock sketch. First test over serial with <code>w</code> <code>a</code> <code>s</code> <code>d</code> to drive and <code>q</code> to stop, then from the controller.</dd>
+          <dt>Printing</dt><dd>All track links and the drive gears.</dd>
+          <dt>Her part</dt><dd class="hers">Counts links into rows of ten, helps close the track, and spins it with the controller.</dd>
+          <dt>Idea</dt><dd>Gears trade speed for strength.</dd>
+          <dt>Done when</dt><dd>A track runs on the table when she pushes the stick.</dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="phase">
+      <div class="num">10</div>
+      <div class="body">
+        <div class="head"><h3>First drive</h3><span class="when">Feb to Mar 2027</span><span class="pill">Not started</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>Both tracks on the body floor. Battery, fuse, low-voltage cutoff and buck converter. Fit the two distance sensors and make the Arduino stop at a wall or a drop. Make the robot stop when the controller connection drops.</dd>
+          <dt>Printing</dt><dd>The body floor and the second wheel frame.</dd>
+          <dt>Her part</dt><dd class="hers">Drives the bare chassis. Then tries to drive it into a wall and off a low step, and finds out that it refuses.</dd>
+          <dt>Idea</dt><dd>It senses the wall before it touches it.</dd>
+          <dt>Done when</dt><dd>She drives it across the living room and back, and it stops by itself at a wall and at a low step.</dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="phase">
+      <div class="num">11</div>
+      <div class="body">
+        <div class="head"><h3>Arms and a body</h3><span class="when">Mar 2027</span><span class="pill">Not started</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>Prime and spray each body panel outdoors as it comes off the printer. Fit both arms. Move the electronics from the desk into the body.</dd>
+          <dt>Printing</dt><dd>The second arm, then one body panel per night.</dd>
+          <dt>Her part</dt><dd class="hers">Weathers each panel with brown and black acrylic paint, which is the one paint job where mess improves the result. Programs a wave and a hug in the block editor.</dd>
+          <dt>Idea</dt><dd>Big things are built from small finished things.</dd>
+          <dt>Done when</dt><dd>The panels she painted stand as a box on the tracks.</dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="phase">
+      <div class="num">12</div>
+      <div class="body">
+        <div class="head"><h3>Oscar in one piece</h3><span class="when">Mar to Apr 2027</span><span class="pill">Not started</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>Move the head from the desk stand to the body, wire everything a second time, close the body and fit the door.</dd>
+          <dt>Printing</dt><dd>Body top, door and the last small parts.</dd>
+          <dt>Her part</dt><dd class="hers">Puts the head on with me. Sticks on the name plate from mission 1. Drives Oscar to someone and makes him wave.</dd>
+          <dt>Idea</dt><dd>The parts she already knows now work together.</dd>
+          <dt>Done when</dt><dd>She drives the whole of Oscar across the room and makes him wave.</dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="phase">
+      <div class="num">13</div>
+      <div class="body">
+        <div class="head"><h3>It listens and answers</h3><span class="when">Apr 2027</span><span class="pill">Not started</span></div>
+        <dl class="track">
+          <dt>Build</dt><dd>AI layer two. Wake word and speech to text on the Pi, with the laptop as fallback if the Pi is too slow, then a language model that can answer and call four robot tools: <code>drive</code>, <code>look</code>, <code>play_animation</code> and <code>play_sound</code>. Text to speech on the Pi. A button on the game controller works as push-to-talk next to the wake word. Target: the answer starts within two seconds, because a small child will not wait longer.</dd>
+          <dt>Printing</dt><dd>Nothing.</dd>
+          <dt>Her part</dt><dd class="hers">Holds the talk button and asks it to come. Decides the robot's character and its rules, in her own words. We write them into its instructions together and test whether it keeps them.</dd>
+          <dt>Idea</dt><dd>You steer this kind of machine with language, and it does not always do what you meant.</dd>
+          <dt>Done when</dt><dd>She asks it to come to her, and it does.</dd>
+        </dl>
+      </div>
+    </li>
+
+  </ol>
+  <p>After mission 13 the teach game from mission 7 runs again on the finished robot, as a show for the family.</p>
+</section>
+
+<section id="software">
+  <h2>Software</h2>
+  <p>The plan is to keep the stock code running and add the AI as a separate service next to it, so the robot still works as a remote-controlled toy when the clever parts are broken.</p>
+  <dl class="stack">
+    <dt>Motion</dt>
+    <dd>
+      <span>Stock Arduino sketch from <a href="https://github.com/chillibasket/walle-replica">chillibasket/walle-replica</a>. It queues animations, smooths servo acceleration and reads commands from the Pi without blocking.</span>
+      <span>New: two distance sensors on the Arduino stop forward motion at an obstacle or a drop. The check runs on the Arduino, so it holds even when the Pi has crashed.</span>
+      <span>Commands are single characters at 115200 baud: <code>w</code> <code>a</code> <code>s</code> <code>d</code> drive, <code>q</code> stops, <code>j</code> <code>l</code> tilt the head, <code>i</code> <code>k</code> move the eyes.</span>
+    </dd>
+    <dt>Remote control</dt>
+    <dd>
+      <span>New: a Bluetooth game controller is the main control. It pairs with the Pi, and a small service turns sticks and buttons into the commands above. No phone, browser or Wi-Fi is involved. If the connection drops, the service sends stop.</span>
+      <span>Stock Flask web interface on the Pi, kept for setup and debugging: on-screen joystick, manual servo control, sounds, text to speech, a drag-and-drop block editor and a camera stream. A systemd service starts it at boot.</span>
+    </dd>
+    <dt>Face following</dt>
+    <dd>
+      <span>New. A face detector on the Pi turns the offset of the face from the image centre into head and eye commands. Candidates are MediaPipe and OpenCV.</span>
+    </dd>
+    <dt>Voice loop</dt>
+    <dd>
+      <span>New. Wake word or a push-to-talk button on the controller, speech to text, language model with tool calls, text to speech. Candidates are openWakeWord, a Whisper-family model and Piper. Which language model runs behind it is an open decision.</span>
+      <span>The model never sends raw serial commands. It calls four named tools with limits on speed and duration, and the service translates those into the commands above.</span>
+    </dd>
+    <dt>Teach game</dt>
+    <dd>
+      <span>New. Image embeddings from a small pretrained vision model plus a nearest-neighbour classifier, all on the Pi. Her examples are stored as pictures in folders named after each object, so she can look at exactly what the robot learned from.</span>
+    </dd>
+  </dl>
+  <p>The stock code is licensed GPL-3.0. Everything I derive from it will be published under the same licence, in the <a href="https://github.com/Alex-vonAllmen/oscar-the-bot">project repository</a>, which already holds the source of this site. Our own new code will be published there too.</p>
+</section>
+
+<section id="safety">
+  <h2>Safety and privacy</h2>
+  <p>This is a robot with a lithium battery, a camera and a microphone in a house with a small child. These rules are part of the design.</p>
+  <ul class="plain">
+    <li><strong>Battery.</strong> Whatever battery we pick has a hard case and is charged outside the robot. A fuse and a low-voltage cutoff sit between the battery and everything else.</li>
+    <li><strong>Walls and edges.</strong> Two distance sensors stop forward motion at an obstacle or a drop, whatever the controller, the Pi or the language model asked for.</li>
+    <li><strong>Lost connection.</strong> When the game controller disconnects or its battery dies, the robot stops. The Arduino should also stop by itself when the Pi goes silent. That second check needs a heartbeat the stock code does not have, and it is not written yet.</li>
+    <li><strong>Pinch points.</strong> Treads and arm linkages can catch small fingers. Drive speed is capped in software while she is the driver.</li>
+    <li><strong>Printer and paint.</strong> The nozzle and bed are hot, so she watches and I remove the parts. Spray painting is an adult job, outdoors.</li>
+    <li><strong>No pictures or audio of her leave the house.</strong> Face following and the teach game run on the robot. Speech is transcribed at home, and only the text goes to the language model.</li>
+    <li><strong>The microphone has a physical off switch.</strong> Nothing is recorded before the wake word or the talk button.</li>
+    <li><strong>This site.</strong> It does not give her name or age and shows no photo or recording of her. Photos show the robot and its parts, and location data is removed before a photo is published.</li>
+    <li><strong>Home network only.</strong> The stock web interface has a simple login that is not meant for untrusted networks, so the robot is never exposed to the internet.</li>
+  </ul>
+</section>
+
+<section id="open">
+  <h2>Open decisions</h2>
+  <ul class="plain">
+    <li><strong>Battery.</strong> The current direction is a Bosch Professional 12 V tool pack in a printed sleeve behind a flap in the back panel. I saw exactly that in another builder's robot, and the pack pulls out to the rear. It is not final: I do not like a tool battery in a toy, and Bosch makes these packs for its own tools only. The alternatives I looked at are a USB-C power bank with a trigger board, a small camera battery, and the DJI RoboMaster battery. The test is the same for all of them: easy to swap, safe for her to handle, simple to wire.</li>
+    <li><strong>Power button.</strong> A button on the front panel, as on the other builder's robot. A plain latching switch in the battery line would cut the Pi without a clean shutdown. A momentary button on a small power switch board lets the Pi shut down first. That choice waits for the battery.</li>
+    <li><strong>Language model.</strong> A cloud model answers faster and better. A local model on the laptop keeps even the text at home. I will measure response time for both before choosing.</li>
+    <li><strong>Sharing the serial port.</strong> The stock web interface owns the connection to the Arduino. The AI service and the controller service should send their commands through that interface instead of opening the port a second time. How cleanly that works is untested.</li>
+    <li><strong>Camera fit.</strong> The camera eye gets a flat clear window instead of a glass lens, and the standard Camera Module 3 lens clears the opening if it sits within about 20 mm of it. Where the camera sits on the printed mount is not measured yet.</li>
+    <li><strong>Sensor bracket.</strong> Where the two distance sensors mount on the front without spoiling the look, and whether the extra code still fits in the Arduino Uno's memory.</li>
+    <li><strong>Pace.</strong> One session a week is a guess. I will adjust after mission 3.</li>
+    <li><strong>Wake word or talk button.</strong> A wake word has to cope with a child's voice. A talk button is simpler and only listens while it is held. Both are planned, and she decides which one she uses.</li>
+  </ul>
+</section>
+
+<section id="later">
+  <h2>Later upgrades</h2>
+  <ul class="plain">
+    <li><strong>Driven arms and hands.</strong> The other builder's robot moves its arms at more joints than ours will. That needs new arm parts, more motors and more code, so it comes after mission 13.</li>
+    <li><strong>A phone in the controller.</strong> A game controller with a phone clamped in it, showing the camera picture and the web page. Maybe.</li>
+    <li><strong>Not planned: screens in the eyes.</strong> Some builds replace the lenses with small displays. Oscar keeps his glass eye and his camera eye.</li>
+  </ul>
+</section>
+
+<footer>
+  <p>This is an unofficial fan build and a personal project. WALL-E is a character owned by Disney and Pixar. This site is not affiliated with or endorsed by either company.</p>
+  <p>My daughter builds Oscar with me. This site does not give her name or age and shows no photo or recording of her. <a href="credits.html#privacy">How the site handles privacy</a>.</p>
+  <p>Our text and our own files are under the <a href="credits.html#licence">MIT licence</a>. Source of this site: <a href="https://github.com/Alex-vonAllmen/oscar-the-bot">github.com/Alex-vonAllmen/oscar-the-bot</a></p>
+</footer>
+</main>
+</div>
+</body>
+</html>

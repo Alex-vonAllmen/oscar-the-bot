@@ -1,0 +1,53 @@
+# Move this file to .github/workflows/deploy.yml to activate it (the tool that wrote it may not write there).
+# Copies site/ to the web server over SSH.
+# Manual trigger only until the server is set up. To deploy on every push to main,
+# add under "on:":   push: { branches: [main], paths: ["site/**"] }
+# Needs repository secrets: DEPLOY_HOST, DEPLOY_USER, DEPLOY_PATH, DEPLOY_KEY, DEPLOY_KNOWN_HOSTS.
+name: Deploy site
+
+on:
+  workflow_dispatch:
+
+concurrency: deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check privacy rules
+        run: |
+          set -e
+          # Fails if the site requests anything from another server.
+          if grep -RInE '(src|href)="https?://[^"]+\.(js|css|woff2?|png|jpe?g|webp|gif|svg)"' site/; then
+            echo "Third-party asset found"; exit 1; fi
+          if grep -RInE 'fonts\.googleapis|fonts\.gstatic|/Users/|mailto:' site/; then
+            echo "Forbidden reference found"; exit 1; fi
+          # Fails if a published photo still carries metadata.
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          import pathlib, sys
+          from PIL import Image
+          bad = []
+          for p in pathlib.Path("site").rglob("*"):
+              if p.suffix.lower() in {".jpg", ".jpeg", ".png", ".webp"}:
+                  with Image.open(p) as im:
+                      if im.getexif() or im.info.get("exif") or im.info.get("xmp"):
+                          bad.append(str(p))
+          if bad:
+              print("Metadata found in:", *bad, sep="\n  "); sys.exit(1)
+          PY
+
+      - name: Set up SSH
+        run: |
+          install -m 700 -d ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          echo "${{ secrets.DEPLOY_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+
+      - name: Copy site
+        run: |
+          rsync -rlz --delete --chmod=D755,F644 \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            site/ "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/"

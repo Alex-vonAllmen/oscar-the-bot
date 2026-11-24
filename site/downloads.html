@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Downloads | Oscar the Bot</title>
+<meta name="description" content="Files from the Oscar build: fit model, component boxes and script, and links to the original design and remixes.">
+<link rel="preload" href="assets/fonts/geist-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="site-head">
+  <div class="inner">
+    <a class="site-name" href="index.html"><span class="plate">OSCAR</span> the Bot</a>
+    <nav class="site-nav" aria-label="Site">
+      <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="plan.html">Plan</a></li>
+      <li><a href="parts.html">Parts</a></li>
+      <li><a href="design.html">Design changes</a></li>
+      <li><a href="downloads.html" aria-current="page">Downloads</a></li>
+      <li><a href="log.html">Build log</a></li>
+      <li><a href="credits.html">Credits</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="page">
+<main id="content">
+<header>
+  <p class="eyebrow">Files</p>
+  <h1>Downloads</h1>
+  <p class="lede">What we made ourselves is here, under the MIT licence. Other people's files stay where their authors published them, and this page links to them.</p>
+</header>
+
+<section id="ours">
+  <h2>Our files</h2>
+  <ul class="files">
+    <li><a href="files/oscar-fit-model-v2.png">Fit model v2, picture</a><span class="meta">PNG, 389 KB</span><span class="desc">Three views of our electronics inside the body. 16 November 2026.</span></li>
+    <li><a href="files/oscar-components-v2.step" download>Fit model v2, component boxes</a><span class="meta">STEP, 181 KB</span><span class="desc">One box per component, in the coordinates of chillibasket's assembly file. Open both together in FreeCAD: they share the same origin.</span></li>
+    <li><a href="files/oscar-fit-model-v2.py" download>Fit model v2, script</a><span class="meta">Python, 5 KB</span><span class="desc">CadQuery script that places the boxes and checks for collisions. Run it with the assembly STEP file and an output folder as arguments. Change the numbers at the top and run it again.</span></li>
+  </ul>
+</section>
+
+<section id="cad">
+  <h2>Our CAD parts</h2>
+  <p>None yet. The front panel with the power button and the rear flap with the battery sleeve will appear here as STEP and STL once they are designed and test-printed.</p>
+  <p class="note">A part we change from someone else's file keeps that file's licence, not MIT, and says so next to the download.</p>
+</section>
+
+<section id="original">
+  <h2>The original design</h2>
+  <ul class="plain">
+    <li><a href="https://wired.chillibasket.com/3d-printed-wall-e/">chillibasket's project page</a>: STL and STEP files, the parts list and the assembly guide. We do not copy these files here.</li>
+    <li><a href="https://github.com/chillibasket/walle-replica">chillibasket/walle-replica</a>: Arduino sketch and web interface, GPL-3.0.</li>
+    <li>Remixes we use: links and licences on the <a href="design.html#remixes">design changes page</a>.</li>
+    <li>mneuhaus's <a href="https://cad.onshape.com/documents/e2006a749194244a0138595b/w/b0c916bba4469b0d0f3203c4/e/2251efc11f608df0d03058cb">complete CAD model on Onshape</a>, public, with export.</li>
+  </ul>
+</section>
+
+<section id="source">
+  <h2>This site and our code</h2>
+  <p>Everything on this site, and our code once there is code worth reading, is in the <a href="https://github.com/Alex-vonAllmen/oscar-the-bot">project repository</a> on GitHub.</p>
+</section>
+</main>
+<footer>
+  <p>This is an unofficial fan build and a personal project. WALL-E is a character owned by Disney and Pixar. This site is not affiliated with or endorsed by either company.</p>
+  <p>My daughter builds Oscar with me. This site does not give her name or age and shows no photo or recording of her. <a href="credits.html#privacy">How the site handles privacy</a>.</p>
+  <p>Our text and our own files are under the <a href="credits.html#licence">MIT licence</a>. Source of this site: <a href="https://github.com/Alex-vonAllmen/oscar-the-bot">github.com/Alex-vonAllmen/oscar-the-bot</a></p>
+</footer>
+</div>
+</body>
+</html>

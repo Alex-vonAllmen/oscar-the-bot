@@ -1,37 +1,53 @@
-# AI Wall-E Build
+# Oscar the Bot
 
-Build log and plan for a 3D-printed, tank-tracked Wall-E replica with a brain a child can talk to and teach.
+Build log, plan and files for Oscar, a 3D-printed, tank-tracked Wall-E replica with a brain a child can talk to and teach.
 
 The robot body follows [chillibasket's open-source Wall-E replica](https://wired.chillibasket.com/3d-printed-wall-e/). This project adds three AI layers on top: face following, a voice loop with a language model, and a game in which a child teaches the robot to recognise her toys.
+
+Website: `https://oscar.vonallmen.co` (not live yet).
 
 ## What is in this repository
 
 | Path | Content |
 |---|---|
-| `site/index.html` | The project website: plan, phases, parts list with prices, software, safety and privacy rules, build log. One self-contained HTML file. |
+| `site/` | The website. Hand-written HTML pages, one stylesheet, no build step |
+| `site/log.html` | Build log. New entries go at the top, from the template in the comment |
+| `site/files/` | Our own files: fit model picture, component boxes (STEP), CadQuery script |
+| `site/photos/` | Build photos, one folder per date, prepared with `tools/prep_photos.py` |
+| `site/assets/` | Stylesheet, fonts (served from the site), the script that shows the latest log entries on the home page |
+| `tools/prep_photos.py` | Resizes photos and removes all metadata, including location |
+| `deploy/` | Notes for hosting on the server |
+| `deploy/deploy.yml` | GitHub Actions workflow that copies `site/` to the server. Manual trigger only. Moves to `.github/workflows/` once the server is ready |
 
 Robot code will be added here once there is code worth reading.
 
 ## View the site locally
 
-Open `site/index.html` in a browser. It has no build step. The only external requests are the web fonts from Google Fonts.
+```
+cd site && python3 -m http.server 8000
+```
 
-## Hosting
+Then open <http://localhost:8000>. Opening `site/index.html` directly from disk also works, except that the home page then shows a link to the build log instead of the latest entries.
 
-The site is a single static file. Any web server that serves the `site/` folder will do.
+The site makes no requests to other servers.
 
-## Status
+## Rules for the content
 
-Planning and ordering. Nothing is printed yet. See the build log at the bottom of the site.
+- No name or age of my daughter, and no photo, video or recording of her.
+- Location data removed from every photo before it is committed.
+- No private file paths, no email address.
+- Other people's CAD files are linked, not copied, unless their licence allows it and the licence is stated next to the file.
 
 ## Credits
 
 - [chillibasket](https://wired.chillibasket.com/3d-printed-wall-e/) designed the robot and published the CAD files and the [Arduino and web interface code](https://github.com/chillibasket/walle-replica) (GPL-3.0).
-- [wall-e-dora](https://mneuhaus.github.io/wall-e-dora) by mneuhaus is a more advanced build in the same lineage.
+- The remixes used are by JaZzMaN251, ZDC, dmdiego, Guenter, Fendermann and rene1960, listed with links and licences on the site's design changes page.
+- [WALL-E-DORA](https://mneuhaus.github.io/wall-e-dora) by mneuhaus is a more advanced build in the same lineage, and the source of the rear battery flap and front power button ideas.
+- Font: Geist by Vercel, SIL Open Font License 1.1. Look based on the Grounded Precision design system, with Sunflower Yellow and Hot Pink from the build.
 
 ## Licence
 
-No licence has been chosen for the site content yet. Code derived from chillibasket's GPL-3.0 code will be published under GPL-3.0.
+MIT for the site's text and pictures and for CAD files and code made from scratch for this project. See [LICENSE](LICENSE) for the scope: parts derived from other people's files keep their original licence, and code derived from chillibasket's code is GPL-3.0.
 
 ## Disclaimer
 

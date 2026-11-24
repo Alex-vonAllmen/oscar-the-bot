@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build log | Oscar the Bot</title>
+<meta name="description" content="Dated progress entries from the Oscar build, newest first.">
+<link rel="preload" href="assets/fonts/geist-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="site-head">
+  <div class="inner">
+    <a class="site-name" href="index.html"><span class="plate">OSCAR</span> the Bot</a>
+    <nav class="site-nav" aria-label="Site">
+      <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="plan.html">Plan</a></li>
+      <li><a href="parts.html">Parts</a></li>
+      <li><a href="design.html">Design changes</a></li>
+      <li><a href="downloads.html">Downloads</a></li>
+      <li><a href="log.html" aria-current="page">Build log</a></li>
+      <li><a href="credits.html">Credits</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="page">
+<main id="content">
+<header>
+  <p class="eyebrow">Newest first</p>
+  <h1>Build log</h1>
+  <p class="lede">What happened, when, and what went wrong. Photos show Oscar and his parts, never my daughter.</p>
+</header>
+
+<section id="entries" aria-label="Entries">
+<div class="entries">
+<!--
+  NEW ENTRY: copy this block, paste it directly below this comment (newest first), fill it in.
+  id = date plus a short slug, unique on this page. Photos go in photos/YYYY-MM-DD/, resized and
+  stripped of location data with tools/prep_photos.py. Never a photo that shows her.
+
+  <article class="entry" id="YYYY-MM-DD-slug">
+    <time datetime="YYYY-MM-DD">DD Mon YYYY</time>
+    <div class="body">
+      <h3><a href="#YYYY-MM-DD-slug">Title</a></h3>
+      <p>Text.</p>
+      <figure>
+        <img src="photos/YYYY-MM-DD/name.jpg" width="1600" height="1200" alt="What the photo shows" loading="lazy">
+        <figcaption>Caption.</figcaption>
+      </figure>
+    </div>
+  </article>
+-->
+  <article class="entry" id="2026-11-24-rear-flap">
+    <time datetime="2026-11-24">24 Nov 2026</time>
+    <div class="body">
+      <h3><a href="#2026-11-24-rear-flap">A battery flap and a power button, from another builder</a></h3>
+      <p>I went through the photos and the public CAD model of mneuhaus's WALL-E-DORA robot. His battery is a Bosch 12 V tool pack in a sleeve behind a flap in the back panel, and it pulls out to the rear. That is now the direction for Oscar, though not yet a final decision.</p>
+      <p>Two more things come along: a button on the front panel that switches him on, and, after mission 13, arms and hands that move at more joints. Screens in the eyes stay out.</p>
+      <p>His body has the same outside size as chillibasket's, but the panels join differently, so they cannot be swapped in one at a time. Details are on the <a href="design.html#dora">design changes page</a>.</p>
+    </div>
+  </article>
+  <article class="entry" id="2026-11-24-name">
+    <time datetime="2026-11-24">24 Nov 2026</time>
+    <div class="body">
+      <h3><a href="#2026-11-24-name">Oscar has a name on this site</a></h3>
+      <p>She named the robot Oscar. Until today this site only said "the robot". From now on it uses his name, and the name plate she prints in mission 1 will say OSCAR.</p>
+      <p>The site itself is now split into pages: the plan, the parts, our design changes, downloads, this log and the credits.</p>
+    </div>
+  </article>
+  <article class="entry" id="2026-11-23-ordered">
+    <time datetime="2026-11-23">23 Nov 2026</time>
+    <div class="body">
+      <h3><a href="#2026-11-23-ordered">Printer and first parts ordered</a></h3>
+      <p>The printer is a Bambu Lab P2S Combo: enclosed, with Bambu's AMS filament unit. It cost CHF 568, against the CHF 250 the parts list had for the open-frame A1.</p>
+      <p>With it went the filament, including soft TPU for the track test, and most of what missions 1 to 9 need: Pi, camera, servos, Arduino, motor shield, servo driver, distance sensors, game controller, speaker and amplifier, and the bits for the desk rigs. Three orders, CHF 1,170.70 in total. The <a href="parts.html">parts list</a> now shows what was paid. Mission 1 starts when the printer arrives, which should be early December.</p>
+    </div>
+  </article>
+  <article class="entry" id="2026-11-16-fit-model">
+    <time datetime="2026-11-16">16 Nov 2026</time>
+    <div class="body">
+      <h3><a href="#2026-11-16-fit-model">Everything fits inside, on paper</a></h3>
+      <p>I measured the free space inside the body from chillibasket's assembly file and placed a box for each part of our electronics: Pi, battery, Arduino stack, converter, servo driver, speaker and amplifier. Nothing collides, and the boxes fill 57 percent of the space below the neck servos. The tightest gap is 1.4 mm.</p>
+      <figure><a href="files/oscar-fit-model-v2.png"><img src="files/oscar-fit-model-v2.png" width="2080" height="806" alt="Three views of the body with coloured boxes for each electronic component." loading="lazy"></a><figcaption>Fit model v2. The files are on the <a href="downloads.html">downloads page</a>.</figcaption></figure>
+    </div>
+  </article>
+  <article class="entry" id="2026-11-16-plan-v5">
+    <time datetime="2026-11-16">16 Nov 2026</time>
+    <div class="body">
+      <h3><a href="#2026-11-16-plan-v5">The plan turned around: head first, body last</a></h3>
+      <p>My first plan printed and painted every part before anything moved. That is a month of printing with nothing for her to do. The plan is now thirteen short missions. Each one ends with something that works: an arm that waves, an eye that finds her face, a head that looks sad. Camera, voice and the teach game run on the desk long before the robot drives. The price is that I wire the head twice.</p>
+    </div>
+  </article>
+  <article class="entry" id="2026-11-16-controller">
+    <time datetime="2026-11-16">16 Nov 2026</time>
+    <div class="body">
+      <h3><a href="#2026-11-16-controller">A game controller instead of a phone</a></h3>
+      <p>The main control is now a Bluetooth game controller paired with the Pi, so driving needs no phone, browser or Wi-Fi. The web interface stays for setup. One controller button becomes push-to-talk. The robot has to stop when the controller connection drops. New estimate: CHF 975 to 1,145 with the printer.</p>
+    </div>
+  </article>
+  <article class="entry" id="2026-11-15-remixes">
+    <time datetime="2026-11-15">15 Nov 2026</time>
+    <div class="body">
+      <h3><a href="#2026-11-15-remixes">Which remixes we use</a></h3>
+      <p>Read the community remixes listed on chillibasket's page and picked six: soft TPU tracks, wheel frames with track tension and bearings, a drive gear held by a grub screw, a head bolted to the neck, printed eye linkages and magnetic door holders. The tracks still have to win a floor test in mission 8. The list with links and licences is on the <a href="design.html#remixes">design changes page</a>.</p>
+    </div>
+  </article>
+  <article class="entry" id="2026-11-15-battery-sensors">
+    <time datetime="2026-11-15">15 Nov 2026</time>
+    <div class="body">
+      <h3><a href="#2026-11-15-battery-sensors">Tool battery, distance sensors, microphone</a></h3>
+      <p>Compared the plan with what is known about Microduck's hardware. Two things carried over: a hard-cased removable battery and distance sensing. The LiPo is replaced by a Bosch 12 V tool battery, and two distance sensors on the Arduino now stop the robot at walls and edges. The microphone is settled on a simple USB one with a physical mute. New estimate: CHF 940 to 1,100 with the printer.</p>
+    </div>
+  </article>
+  <article class="entry" id="2026-11-15-priced">
+    <time datetime="2026-11-15">15 Nov 2026</time>
+    <div class="body">
+      <h3><a href="#2026-11-15-priced">Parts priced, Pi upgraded</a></h3>
+      <p>Priced every line of the parts list, mostly in Swiss shops. The estimate is CHF 920 to 1,100 with the printer and CHF 670 to 850 without. Switched the Pi from 4 GB to 8 GB after finding the Swiss price gap is about CHF 36, and moved speech to text onto the robot.</p>
+    </div>
+  </article>
+  <article class="entry" id="2026-11-14-published">
+    <time datetime="2026-11-14">14 Nov 2026</time>
+    <div class="body">
+      <h3><a href="#2026-11-14-published">Plan published</a></h3>
+      <p>Chose a tracked robot over a walking one, dropped reinforcement learning from the main build, and split the AI into three layers she can each use on her own. Nothing is printed and nothing is ordered yet.</p>
+    </div>
+  </article>
+</div>
+</section>
+</main>
+<footer>
+  <p>This is an unofficial fan build and a personal project. WALL-E is a character owned by Disney and Pixar. This site is not affiliated with or endorsed by either company.</p>
+  <p>My daughter builds Oscar with me. This site does not give her name or age and shows no photo or recording of her. <a href="credits.html#privacy">How the site handles privacy</a>.</p>
+  <p>Our text and our own files are under the <a href="credits.html#licence">MIT licence</a>. Source of this site: <a href="https://github.com/Alex-vonAllmen/oscar-the-bot">github.com/Alex-vonAllmen/oscar-the-bot</a></p>
+</footer>
+</div>
+</body>
+</html>

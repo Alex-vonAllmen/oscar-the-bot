@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design changes | Oscar the Bot</title>
+<meta name="description" content="Which community remixes Oscar uses, the CAD changes our electronics need, and the fit check of the body.">
+<link rel="preload" href="assets/fonts/geist-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="site-head">
+  <div class="inner">
+    <a class="site-name" href="index.html"><span class="plate">OSCAR</span> the Bot</a>
+    <nav class="site-nav" aria-label="Site">
+      <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="plan.html">Plan</a></li>
+      <li><a href="parts.html">Parts</a></li>
+      <li><a href="design.html" aria-current="page">Design changes</a></li>
+      <li><a href="downloads.html">Downloads</a></li>
+      <li><a href="log.html">Build log</a></li>
+      <li><a href="credits.html">Credits</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="shell">
+
+<nav class="index" aria-label="On this page">
+  <p class="name">On this page</p>
+  <ol>
+    <li><a href="#remixes">Remixes we use</a></li>
+    <li><a href="#changes">Changes we make</a></li>
+    <li><a href="#eye">The camera eye</a></li>
+    <li><a href="#fit">Fit check</a></li>
+    <li><a href="#dora">Another builder</a></li>
+    <li><a href="#ours">Our own parts</a></li>
+  </ol>
+</nav>
+
+<main id="content">
+<header>
+  <p class="eyebrow">Draft, 24 November 2026. Nothing is printed yet</p>
+  <h1>Changes to the design</h1>
+  <p class="lede">Oscar starts from <a href="https://wired.chillibasket.com/3d-printed-wall-e/">chillibasket's Wall-E replica</a>. We use community remixes where other builders already solved a problem, and change the design ourselves where our electronics need room.</p>
+</header>
+
+<section id="remixes">
+  <h2>Remixes we use</h2>
+  <p>All of these are on Thingiverse. We link to them here instead of copying their files.</p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th scope="col">Remix</th><th scope="col">By</th><th scope="col">What it changes</th><th scope="col">Licence</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://www.thingiverse.com/thing:6630130">Wall-E Track Mod</a></td><td>JaZzMaN251</td><td>Track links with slots underneath, held by paperclip pins. Printed in soft TPU, which should be quieter on our wooden floors. Based on ZDC's <a href="https://www.thingiverse.com/thing:4932310">tracks</a>.</td><td>CC BY-SA</td></tr>
+        <tr><td><a href="https://www.thingiverse.com/thing:4832742">Wheel frame with spring and bearings</a></td><td>dmdiego</td><td>Track tension and ball bearings. Combines Guenter's tensioner with Fendermann's <a href="https://www.thingiverse.com/thing:4795733">bearing chassis</a>.</td><td>CC BY</td></tr>
+        <tr><td><a href="https://www.thingiverse.com/thing:4932959">Pinion with grub screw</a></td><td>dmdiego</td><td>Drive gear clamped to the motor shaft instead of pressed on.</td><td>CC BY</td></tr>
+        <tr><td><a href="https://www.thingiverse.com/thing:4285247">Track tensioner</a></td><td>Guenter</td><td>Reference for spring and screw sizes and the track length.</td><td>CC BY</td></tr>
+        <tr><td><a href="https://www.thingiverse.com/thing:4583962">Head and neck with bolts</a></td><td>rene1960</td><td>Head bolted to the neck instead of glued, so it can be opened for the camera and the servos.</td><td>CC BY</td></tr>
+        <tr><td><a href="https://www.thingiverse.com/thing:4707426">Linkage arms</a></td><td>ZDC</td><td>Printed eye linkages instead of bent paperclips. Made to fit rene1960's head.</td><td>CC BY</td></tr>
+        <tr><td><a href="https://www.thingiverse.com/thing:4734863">Magnetic door holders</a></td><td>ZDC</td><td>Magnets keep the front door shut.</td><td>CC BY-NC</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Before the tracks are printed, mission 8 tests ten TPU links against ten hard PETG links on our floor. If PETG wins, the track choice changes.</p>
+</section>
+
+<section id="changes">
+  <h2>Changes we make</h2>
+  <p>Part names follow chillibasket's parts list. The STEP files are plain solids without a feature history, so every change is cut or added geometry.</p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th scope="col">Change</th><th scope="col">Parts affected</th><th scope="col">Open question</th></tr></thead>
+      <tbody>
+        <tr><th scope="rowgroup" colspan="3">Gate A: fixed before any body panel is printed</th></tr>
+        <tr><td>Battery behind a rear flap</td><td><code>body-back</code> with an opening, a flap, hinge and magnet latch, a sleeve with contacts</td><td>Contact fit of the battery. Two or three test prints</td></tr>
+        <tr><td>Power button</td><td><code>body-front</code>: one hole and room behind it</td><td>Depth behind the panel</td></tr>
+        <tr><td>Electronics tray</td><td>New part on <code>body-bottom</code></td><td>Clearance over eight bolt heads</td></tr>
+        <tr><td>Cooling vents</td><td><code>body-back</code> or <code>body-bottom</code></td><td>The Pi under vision load in a closed PLA box</td></tr>
+        <tr><td>Distance sensor bracket</td><td>New bracket, holes in <code>body-front</code> or <code>body-bottom</code></td><td>The forward sensor must not see the arms or the open door</td></tr>
+        <tr><td>Speaker mount and grille</td><td><code>body-back</code> or <code>body-bottom</code></td><td>Speaker size</td></tr>
+        <tr><td>Microphone opening and mute switch</td><td><code>body-top</code> or <code>body-front</code>, <code>body-back</code></td><td>Distance from the motors</td></tr>
+        <tr><th scope="rowgroup" colspan="3">Gate B: fixed before the head is printed</th></tr>
+        <tr><td>Camera mount and flat window</td><td><code>eye-camera-mount</code>, one eye's front, middle and back</td><td>Where the camera sits on the mount</td></tr>
+        <tr><td>Camera cable route</td><td><code>head-center</code>, neck wire guides, rene1960's neck parts</td><td>A flat cable through three moving joints</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Before each gate we print small test pieces: the eye with camera and window, the sensor bracket, the battery sleeve, one vent pattern.</p>
+</section>
+
+<section id="eye">
+  <h2>The camera eye, measured</h2>
+  <p>Measured from chillibasket's assembly file on 16 November. The glass lens sits in a 30 mm opening. A camera lens 10 mm behind that opening can see through a cone of about 113 degrees, 18 mm behind it about 80 degrees, 22 mm behind it about 69 degrees.</p>
+  <p>The standard Camera Module 3 sees 75 degrees across the diagonal, so it clears the opening if it sits within about 20 mm of it. The wide version needs to sit almost against the glass. We use the standard one.</p>
+  <p>A plano-convex lens in front of a camera works as a close-up lens: nothing farther away than its focal length comes into focus. A binocular lens focuses at roughly 10 to 15 cm. So the camera eye gets a flat clear window, and only the other eye gets a glass lens. That is reasoning, not yet tested.</p>
+</section>
+
+<section id="fit">
+  <h2>Does everything fit inside?</h2>
+  <figure>
+    <a href="files/oscar-fit-model-v2.png"><img src="files/oscar-fit-model-v2.png" width="2080" height="806" alt="Three views of the robot's body with coloured boxes for the Raspberry Pi, battery, Arduino, converter, servo driver, speaker and amplifier, all inside the body outline." loading="lazy"></a>
+    <figcaption>Fit model v2, 16 November 2026. Boxes for our electronics placed in chillibasket's body.</figcaption>
+  </figure>
+  <p>On paper, yes. The space below the neck servos is 129.5 mm wide, 94.7 mm high and 117 mm deep. Our component boxes and a reserve for a Pi add-on board fill 57 percent of it, with no collisions. The rest has to take the wiring, the mounts and the airflow, which the model does not show.</p>
+  <p>The tight spots: 1.4 mm between the Arduino stack and the servos above it, and 2 mm between the back wall and the boards. No connector can face the back.</p>
+  <p>This model puts the battery on the floor behind the front door. It was made before the rear flap idea, so the next version moves the battery to the back. The files are on the <a href="downloads.html">downloads page</a>.</p>
+</section>
+
+<section id="dora">
+  <h2>What we take from another builder</h2>
+  <p>mneuhaus built a heavily reworked Wall-E for his <a href="https://mneuhaus.github.io/wall-e-dora">WALL-E-DORA</a> software. I looked at his photos and his public <a href="https://cad.onshape.com/documents/e2006a749194244a0138595b/w/b0c916bba4469b0d0f3203c4/e/2251efc11f608df0d03058cb">CAD model on Onshape</a>, and measured the model against chillibasket's parts.</p>
+  <ul class="plain">
+    <li><strong>We take:</strong> the battery behind a rear flap, the power button on the front, and later the driven arms and hands.</li>
+    <li><strong>We leave:</strong> the screens in the eyes.</li>
+    <li><strong>Same size, different joints.</strong> His body has chillibasket's outside size and inside width, but his front and back panels sit between the side panels instead of reaching into them. His panels cannot be swapped in one at a time. The shell would have to go as a set.</li>
+    <li><strong>His front button</strong> is a 12 mm latching metal switch, so it switches power on and off.</li>
+    <li><strong>His track links</strong> are the same size as the TPU links we chose. He uses 34 per side.</li>
+  </ul>
+  <p>We do not republish his model. Where we adapt one of his parts, it keeps his licence and credits him.</p>
+</section>
+
+<section id="ours">
+  <h2>Our own parts</h2>
+  <p>Two parts are ours to design: the front panel with the power button, and the rear flap with the battery sleeve. Neither is designed yet. They will be drawn with CadQuery against chillibasket's STEP files, like the fit model, and published as STEP and STL on the <a href="downloads.html">downloads page</a>.</p>
+</section>
+
+<footer>
+  <p>This is an unofficial fan build and a personal project. WALL-E is a character owned by Disney and Pixar. This site is not affiliated with or endorsed by either company.</p>
+  <p>My daughter builds Oscar with me. This site does not give her name or age and shows no photo or recording of her. <a href="credits.html#privacy">How the site handles privacy</a>.</p>
+  <p>Our text and our own files are under the <a href="credits.html#licence">MIT licence</a>. Source of this site: <a href="https://github.com/Alex-vonAllmen/oscar-the-bot">github.com/Alex-vonAllmen/oscar-the-bot</a></p>
+</footer>
+</main>
+</div>
+</body>
+</html>

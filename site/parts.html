@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parts and prices | Oscar the Bot</title>
+<meta name="description" content="Priced parts list for Oscar, a 3D-printed Wall-E replica with a Raspberry Pi brain, with Swiss sources.">
+<link rel="preload" href="assets/fonts/geist-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="site-head">
+  <div class="inner">
+    <a class="site-name" href="index.html"><span class="plate">OSCAR</span> the Bot</a>
+    <nav class="site-nav" aria-label="Site">
+      <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="plan.html">Plan</a></li>
+      <li><a href="parts.html" aria-current="page">Parts</a></li>
+      <li><a href="design.html">Design changes</a></li>
+      <li><a href="downloads.html">Downloads</a></li>
+      <li><a href="log.html">Build log</a></li>
+      <li><a href="credits.html">Credits</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="page">
+<main id="content">
+<header>
+  <p class="eyebrow">First order placed 23 November 2026. Nothing has arrived yet</p>
+  <h1>Parts and prices</h1>
+</header>
+
+<section id="parts">
+    <p>The mechanical and electrical list follows the original design. The brain parts, the battery, the distance sensors, the game controller and the desk rigs are my changes. Ordered parts show what I paid on 23 November 2026, in three orders from 3DJake, Bastelgarage and Digitec. The other prices are what I found in shops on 15 November 2026. They move daily. The first order covers what missions 1 to 9 need. Motors, battery and paint come later.</p>
+  <dl class="status budget">
+    <div><dt>Ordered so far</dt><dd>CHF 1,170.70</dd></div>
+    <div><dt>Still to buy</dt><dd>CHF 305 to 405</dd></div>
+    <div><dt>Expected total</dt><dd>CHF 1,475 to 1,575</dd></div>
+  </dl>
+  <div class="table-scroll">
+    <table class="parts">
+      <thead>
+        <tr><th scope="col">Part</th><th scope="col">Qty</th><th scope="col">Pick, notes and source</th><th scope="col">CHF</th><th scope="col">Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="rowgroup" colspan="5">Printed and mechanical</th></tr>
+        <tr><td>Printed parts</td><td class="qty">about 310</td><td>STL files from the original project and the remixes. About 1.5 kg of filament, listed below.</td><td class="chf"></td><td>To print</td></tr>
+        <tr><td>M3 bolts and nuts</td><td class="qty">28 + 26</td><td>14 bolts of 10 mm, 12 of 20 mm, 2 of 6 mm, and 26 nuts. Sold in packs of 25 to 100.<span class="src">3DJake, Hornbach</span></td><td class="chf">about 23</td><td>To order</td></tr>
+        <tr><td>Paper clips</td><td class="qty">3</td><td>Bent into linkages.</td><td class="chf"></td><td>To get</td></tr>
+        <tr><td>Plano-convex lens</td><td class="qty">1</td><td>31.5 to 32.5 mm diameter, for the eye without the camera. The original took its lenses from old binoculars. New optical lenses of this size cost USD 27 to 46 each.<span class="src">Old binoculars, flea market</span></td><td class="chf">not priced</td><td>To find</td></tr>
+        <tr><td>Flat clear window</td><td class="qty">1</td><td>30 mm disc for the camera eye. A glass lens in front of the camera would act as a close-up lens and blur anything beyond arm's length. That is reasoning, not yet tested.</td><td class="chf">not priced</td><td>To find</td></tr>
+        <tr><th scope="rowgroup" colspan="5">Drive and motion</th></tr>
+        <tr><td>12 V geared motors</td><td class="qty">2</td><td>Pololu 4745: 100:1 gearbox, 37 mm diameter, 100 RPM, off-centre shaft.<span class="src">Botland at EUR 34.90 each, Eckstein at EUR 53.49 each. No Swiss stockist found.</span></td><td class="chf">66 to 102</td><td>To order</td></tr>
+        <tr><td>Micro servos</td><td class="qty">7</td><td>Waveshare MG90S with metal gears.<span class="src">Bastelgarage, CHF 7.90 each</span></td><td class="chf">55.30</td><td>Ordered</td></tr>
+        <tr><td>Arduino Uno Rev3</td><td class="qty">1</td><td><span class="src">Bastelgarage</span></td><td class="chf">25.90</td><td>Ordered</td></tr>
+        <tr><td>Arduino Motor Shield Rev3</td><td class="qty">1</td><td><span class="src">Bastelgarage</span></td><td class="chf">25.90</td><td>Ordered</td></tr>
+        <tr><td>I2C servo driver</td><td class="qty">1</td><td>PCA9685, 16 channels.<span class="src">Bastelgarage</span></td><td class="chf">11.90</td><td>Ordered</td></tr>
+        <tr><td>Distance sensors</td><td class="qty">2</td><td>DFRobot Gravity VL53L0X, 3.3 to 5 V. One looks forward, one down at the floor ahead. This board has no shutdown pin, and both sensors answer on the same address at start-up. So the Arduino has to switch one sensor's power during setup, or an I2C multiplexer goes between them. To solve before mission 10.<span class="src">Bastelgarage, CHF 15.90 each</span></td><td class="chf">31.80</td><td>Ordered</td></tr>
+        <tr><td>Bluetooth game controller</td><td class="qty">1</td><td>8BitDo SN30 Pro, the Bluetooth version: two sticks, small enough for small hands, pairs with the Pi directly.<span class="src">Digitec</span></td><td class="chf">35.00</td><td>Ordered</td></tr>
+        <tr><th scope="rowgroup" colspan="5">Power</th></tr>
+        <tr><td>Battery</td><td class="qty">1 set</td><td>Current direction, not final: Bosch Professional 12 V starter set with two GBA 12V 3.0 Ah packs and the GAL 12V-40 fast charger. Hard-cased, three cells, same voltage as the original LiPo.<span class="src">Galaxus. The set with two 2.0 Ah packs is CHF 68.90.</span></td><td class="chf">87.90</td><td>Not final</td></tr>
+        <tr><td>Battery sleeve and rear flap</td><td class="qty">1</td><td>Printed sleeve with contacts behind a flap in the back panel, so the pack pulls out to the rear. Our own design, not made yet.</td><td class="chf">printed</td><td>To design</td></tr>
+        <tr><td>Power button</td><td class="qty">1</td><td>On the front panel. A latching switch, or a momentary button on a small power switch board so the Pi can shut down first. Not chosen.</td><td class="chf">not priced</td><td>To choose</td></tr>
+        <tr><td>Low-voltage cutoff</td><td class="qty">1</td><td>Disconnects the load before the pack runs too low. As far as I could find, these packs leave that job to the tool.<span class="src">Not priced yet</span></td><td class="chf">10 allowance</td><td>To choose</td></tr>
+        <tr><td>Buck converter</td><td class="qty">1</td><td>6 to 14 V in, 5 V and 8 A out. The Pi 5 can draw up to 5 A.<span class="src">Bastelgarage</span></td><td class="chf">11.90</td><td>To order</td></tr>
+        <tr><td>Small parts</td><td class="qty">1 lot</td><td>Inline fuse and holder, 100 k&#937; and 47 k&#937; resistors, wire, connectors.<span class="src">Not priced item by item</span></td><td class="chf">20 allowance</td><td>To order</td></tr>
+        <tr><th scope="rowgroup" colspan="5">Desk rigs for missions 2 to 9</th></tr>
+        <tr><td>Pi 5 power supply</td><td class="qty">1</td><td>Official 27 W USB-C supply. Runs the Pi on the desk until the robot has a battery.<span class="src">Digitec</span></td><td class="chf">12.30</td><td>Ordered</td></tr>
+        <tr><td>5 V supply for the servos</td><td class="qty">1</td><td>5 V 3 A USB supply with a USB to barrel jack adapter and a barrel socket with screw terminals, for the servo driver on the desk.<span class="src">Bastelgarage, CHF 12.90, 5.90 and 1.90</span></td><td class="chf">20.70</td><td>Ordered</td></tr>
+        <tr><td>Knob for mission 2</td><td class="qty">1</td><td>10 k&#937; linear potentiometer with a turning knob.<span class="src">Bastelgarage, CHF 1.40 and 0.60</span></td><td class="chf">2.00</td><td>Ordered</td></tr>
+        <tr><td>Breadboard and jumper wires</td><td class="qty">1 lot</td><td>Half-size breadboard and three sets of 40 jumper wires, 30 cm.<span class="src">Bastelgarage, CHF 4.90 and 3 &#215; 6.90</span></td><td class="chf">25.60</td><td>Ordered</td></tr>
+        <tr><th scope="rowgroup" colspan="5">Brain</th></tr>
+        <tr><td>Raspberry Pi 5, 8 GB</td><td class="qty">1</td><td>Changed from 4 GB. See the note below the table.<span class="src">Digitec</span></td><td class="chf">179.00</td><td>Ordered</td></tr>
+        <tr><td>Active cooler</td><td class="qty">1</td><td>Official Pi 5 cooler.<span class="src">Bastelgarage</span></td><td class="chf">10.90</td><td>Ordered</td></tr>
+        <tr><td>Camera Module 3</td><td class="qty">1</td><td>12 megapixels, autofocus, CSI. The standard 75&#176; lens, not the wide one. Sits behind a flat clear window in one eye.<span class="src">Digitec</span></td><td class="chf">28.00</td><td>Ordered</td></tr>
+        <tr><td>Camera cable</td><td class="qty">1</td><td>22-pin to 15-pin. The Pi 5 uses the smaller connector. Needed only if the camera box holds just the standard cable.<span class="src">getgoods</span></td><td class="chf">about 2.35</td><td>To check</td></tr>
+        <tr><td>microSD card, 64 GB</td><td class="qty">1</td><td>SanDisk Extreme. The Pi does not start without it.<span class="src">Digitec, Galaxus</span></td><td class="chf">13 to 24</td><td>To order</td></tr>
+        <tr><td>Microphone</td><td class="qty">1</td><td>Mini USB microphone, Adafruit part 3367. Needs no driver. A switch in its USB power line is the physical mute.<span class="src">buyzero at EUR 8.49, sold out when checked</span></td><td class="chf">8 to 10</td><td>To order</td></tr>
+        <tr><td>Speaker</td><td class="qty">1</td><td>3 W, 8 ohm, in its own small enclosure.<span class="src">Bastelgarage</span></td><td class="chf">6.90</td><td>Ordered</td></tr>
+        <tr><td>I2S amplifier</td><td class="qty">1</td><td>MAX98357A, 3 W. The Pi 5 has no headphone jack, so sound goes out over I2S.<span class="src">Bastelgarage</span></td><td class="chf">7.90</td><td>Ordered</td></tr>
+        <tr><th scope="rowgroup" colspan="5">Printer and consumables</th></tr>
+        <tr><td>3D printer</td><td class="qty">1</td><td>Bambu Lab P2S Combo: enclosed, 256 mm cube, with the AMS filament unit. Chosen over the open-frame A1.<span class="src">3DJake</span></td><td class="chf">568.00</td><td>Ordered</td></tr>
+        <tr><td>PLA filament</td><td class="qty">3 kg</td><td>Bambu PLA Basic: Sunflower Yellow for the body, Gray for the details, Hot Pink for the name plate.<span class="src">3DJake, CHF 14.52 and 17.09. Digitec, CHF 19.90</span></td><td class="chf">51.51</td><td>Ordered</td></tr>
+        <tr><td>PETG filament</td><td class="qty">1 kg</td><td>Bambu PETG Basic, Gray, for drive parts and the track test.<span class="src">3DJake</span></td><td class="chf">16.23</td><td>Ordered</td></tr>
+        <tr><td>TPU filament</td><td class="qty">1 kg</td><td>Bambu TPU 95A HF, Black, for the soft tracks and the track test.<span class="src">3DJake</span></td><td class="chf">29.92</td><td>Ordered</td></tr>
+        <tr><td>Primer</td><td class="qty">1 can</td><td>400 ml spray.<span class="src">Action at CHF 4.99, OBI at CHF 12.50</span></td><td class="chf">5 to 12.50</td><td>To order</td></tr>
+        <tr><td>Spray paint</td><td class="qty">3 to 6 cans</td><td>The original uses yellow, white, light grey, dark grey, black and red. White and red are small details and can be brushed on.<span class="src">Galaxus, Dupli-Color at CHF 14.40 per 400 ml can</span></td><td class="chf">43 to 86</td><td>To order</td></tr>
+        <tr><td>Acrylics, brushes, photo paper</td><td class="qty">1 lot</td><td>Black and brown for weathering. Gloss photo paper for the solar charge panel.<span class="src">Not priced item by item</span></td><td class="chf">15 allowance</td><td>To get</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">How to read the totals. "Ordered so far" is what the three orders cost, delivery was free, and 3DJake took off 1 percent. One item in the Digitec order, worth CHF 32.40, is not yet listed in the table. "Still to buy" takes the cheaper source on every open line for the low figure and the dearer one for the high figure. Euro prices are converted at 0.95 francs, which is my assumption, and the three allowances are my estimates. The eye lens, the window and the power button are not in the totals.</p>
+  <div class="aside">
+    <h3>Why the Pi went from 4 GB to 8 GB</h3>
+    <p>Version 1 of this plan chose the 4 GB board because US list prices put the 8 GB board at about double. Swiss shop prices are much closer: CHF 129.00 for 4 GB at Bastelgarage against CHF 164.90 for 8 GB at pi-shop.ch.</p>
+    <p>Everything this plan runs on the Pi fits in 4 GB. The extra CHF 36 buys room to run speech to text on the robot itself, so it keeps working when my laptop is closed. More memory does not make the Pi fast enough to host the language model. That stays off the robot.</p>
+  </div>
+  <div class="aside">
+    <h3>Why a power-tool battery, for now</h3>
+    <p>The original design uses a bare three-cell LiPo pouch that needs a balance charger and a fire bag. In a house with a small child I want a hard case and a charger that is a dock. A Bosch Professional 12 V pack also has three lithium-ion cells, so the voltage matches. Two packs and the fast charger cost CHF 87.90, about CHF 18 more than the LiPo, its charger and the bag.</p>
+    <p>I do not like a tool battery in a toy, and I looked at power banks, camera batteries and the DJI RoboMaster battery as well. Then I saw another builder run his robot on this Bosch pack, in a sleeve behind a rear flap. That is the current direction.</p>
+    <p>Two caveats remain. Bosch makes these packs for its own tools only, so using one in a robot is at my own risk. And the robot has to bring its own fuse and low-voltage cutoff.</p>
+  </div>
+  <p class="note">Shops: <a href="https://www.digitec.ch/">Digitec</a>, <a href="https://www.galaxus.ch/">Galaxus</a>, <a href="https://www.3djake.ch/">3DJake</a>, <a href="https://www.bastelgarage.ch/">Bastelgarage</a>, <a href="https://www.pi-shop.ch/">pi-shop.ch</a>, <a href="https://planet-rc.ch/">planet-rc.ch</a>, <a href="https://fpvracing.ch/">fpvracing.ch</a>, <a href="https://botland.store/">Botland</a>, <a href="https://eckstein-shop.de/">Eckstein</a>, <a href="https://www.berrybase.de/">BerryBase</a>.</p>
+</section>
+</main>
+<footer>
+  <p>This is an unofficial fan build and a personal project. WALL-E is a character owned by Disney and Pixar. This site is not affiliated with or endorsed by either company.</p>
+  <p>My daughter builds Oscar with me. This site does not give her name or age and shows no photo or recording of her. <a href="credits.html#privacy">How the site handles privacy</a>.</p>
+  <p>Our text and our own files are under the <a href="credits.html#licence">MIT licence</a>. Source of this site: <a href="https://github.com/Alex-vonAllmen/oscar-the-bot">github.com/Alex-vonAllmen/oscar-the-bot</a></p>
+</footer>
+</div>
+</body>
+</html>
