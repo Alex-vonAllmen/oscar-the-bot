@@ -1,0 +1,4 @@
+# Oscar the Bot: build site, deployed from github.com/Alex-vonAllmen/oscar-the-bot (site/).
+oscar.vonallmen.co {
+	import static_site /srv/sites/oscar
+}

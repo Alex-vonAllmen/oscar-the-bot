@@ -1,0 +1,10 @@
+# Personal website. Not live: Caddy only imports files ending in .caddy.
+# To launch, follow "Launch www.vonallmen.co" in deploy/server/README.md.
+www.vonallmen.co {
+	import static_site /srv/sites/www
+}
+
+# The bare domain forwards to www.
+vonallmen.co {
+	redir https://www.vonallmen.co{uri} permanent
+}
