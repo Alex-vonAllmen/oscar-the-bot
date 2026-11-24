@@ -1,6 +1,6 @@
 # Static sites on the Atrekos server
 
-The Hetzner server (CX23, Ubuntu 24.04, `2.31.28.22`) runs Atrekos with Docker. Its Caddy container (`atrekos-caddy-1`) holds ports 80 and 443, so every other site on this server goes through the same Caddy.
+The Hetzner server (CX23, Ubuntu 26.04, `2.31.28.22`) runs Atrekos with Docker. Its Caddy container (`atrekos-caddy-1`) holds ports 80 and 443, so every other site on this server goes through the same Caddy.
 
 The Caddy config and the compose file belong to the Atrekos release bundle and are rewritten on every Atrekos release. Static sites therefore live in a folder of their own, outside the bundle. After one change to Atrekos, adding or changing a site never touches Atrekos again.
 
