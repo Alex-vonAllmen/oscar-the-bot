@@ -107,7 +107,7 @@
       </div>
     </div>
   </div>
-  <p class="power">Power: one 12 V battery feeds the motors directly and the Pi through a 12 V to 5 V converter. Which battery is still open. The current direction is a Bosch 12 V tool pack behind a rear flap, see <a href="#open">open decisions</a>.</p>
+  <p class="power">Power: one 12 V battery feeds the motors directly and the Pi through a 12 V to 5 V converter. The battery is a Bosch Professional 12 V tool pack in a sleeve behind a rear flap, ordered on 27 November.</p>
 </section>
 
 <section id="missions">
@@ -125,7 +125,7 @@
       <div class="body">
         <div class="head"><h3>Plan and order</h3><span class="when">Nov 2026</span><span class="pill now">In progress</span></div>
         <dl class="track">
-          <dt>Build</dt><dd>Pick the printer, download the CAD files and code, and order in two waves. The printer, a Bambu Lab P2S Combo, and the first parts were ordered on 23 November. The first wave is the printer, filament, Raspberry Pi, camera, servos, Arduino, servo driver, game controller, speaker and microphone, because missions 1 to 8 need only those. Motors, motor shield, distance sensors and battery follow later.</dd>
+          <dt>Build</dt><dd>Pick the printer, download the CAD files and code, and order in two waves. The printer, a Bambu Lab P2S Combo, and the first parts were ordered on 23 November. The battery, power button, microphone and eye glasses followed on 27 November. The first wave is the printer, filament, Raspberry Pi, camera, servos, Arduino, servo driver, game controller, speaker and microphone, because missions 1 to 8 need only those. Motors, motor shield, distance sensors and battery follow later.</dd>
           <dt>Her part</dt><dd class="hers">Name the robot. She called him Oscar.</dd>
           <dt>Done when</dt><dd>The printer is running and the first wave has arrived.</dd>
         </dl>
@@ -165,7 +165,7 @@
       <div class="body">
         <div class="head"><h3>Oscar's eye</h3><span class="when">Dec 2026</span><span class="pill">Not started</span></div>
         <dl class="track">
-          <dt>Build</dt><dd>Fit the camera into one eye and connect it to the Pi. The stock video stream supports Raspberry Pi CSI cameras only. I expect a curved glass lens in front of the camera to blur everything beyond arm's length, so the camera eye gets a flat clear window. That is reasoning, not yet tested.</dd>
+          <dt>Build</dt><dd>Fit the camera into one eye and connect it to the Pi. The stock video stream supports Raspberry Pi CSI cameras only. A magnifying lens in front of the camera would blur everything beyond arm's length, so both eyes get a double-domed watch glass of even thickness instead. It should look curved without magnifying. That is reasoning, tested first with the spare glass.</dd>
           <dt>Printing</dt><dd>One eye: front, middle, back and camera mount.</dd>
           <dt>Her part</dt><dd class="hers">Paints rust and dirt on the eye with acrylics. Looks at herself through it on the screen and zooms in until the picture turns into squares.</dd>
           <dt>Idea</dt><dd>A camera is an eye, and its picture is made of small squares.</dd>
@@ -369,11 +369,10 @@
 <section id="open">
   <h2>Open decisions</h2>
   <ul class="plain">
-    <li><strong>Battery.</strong> The current direction is a Bosch Professional 12 V tool pack in a printed sleeve behind a flap in the back panel. I saw exactly that in another builder's robot, and the pack pulls out to the rear. It is not final: I do not like a tool battery in a toy, and Bosch makes these packs for its own tools only. The alternatives I looked at are a USB-C power bank with a trigger board, a small camera battery, and the DJI RoboMaster battery. The test is the same for all of them: easy to swap, safe for her to handle, simple to wire.</li>
-    <li><strong>Power button.</strong> A button on the front panel, as on the other builder's robot. A plain latching switch in the battery line would cut the Pi without a clean shutdown. A momentary button on a small power switch board lets the Pi shut down first. That choice waits for the battery.</li>
+    <li><strong>Clean shutdown.</strong> The power button is a latching switch with an LED ring, like the other builder's. Cut straight into the battery line it would switch off the Pi without a clean shutdown. Either the switch drives a relay that the Pi releases after shutting down, or the Pi watches the switch and turns itself off. Not chosen.</li>
     <li><strong>Language model.</strong> A cloud model answers faster and better. A local model on the laptop keeps even the text at home. I will measure response time for both before choosing.</li>
     <li><strong>Sharing the serial port.</strong> The stock web interface owns the connection to the Arduino. The AI service and the controller service should send their commands through that interface instead of opening the port a second time. How cleanly that works is untested.</li>
-    <li><strong>Camera fit.</strong> The camera eye gets a flat clear window instead of a glass lens, and the standard Camera Module 3 lens clears the opening if it sits within about 20 mm of it. Where the camera sits on the printed mount is not measured yet.</li>
+    <li><strong>Camera fit.</strong> The camera eye gets a double-domed watch glass, and the standard Camera Module 3 lens clears the opening if it sits within about 20 mm of it. Where the camera sits on the printed mount is not measured yet.</li>
     <li><strong>Sensor bracket.</strong> Where the two distance sensors mount on the front without spoiling the look, and whether the extra code still fits in the Arduino Uno's memory.</li>
     <li><strong>Pace.</strong> One session a week is a guess. I will adjust after mission 3.</li>
     <li><strong>Wake word or talk button.</strong> A wake word has to cope with a child's voice. A talk button is simpler and only listens while it is held. Both are planned, and she decides which one she uses.</li>
